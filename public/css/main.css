@@ -1,0 +1,38 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+nav {
+    text-align: right;
+    padding: 10px;
+    background-color: lightgrey;
+}
+
+a {
+    text-decoration: none;
+    color: blue;
+}
+
+body {
+    font-family: 'arial';
+}
+
+header {
+    background-color: darkolivegreen;
+    padding: 20px;
+    color:white;
+}
+
+main {
+    text-align: center;
+    font-size: 3em;
+    margin: 50px;
+}
+
+footer {
+    background-color: darkslategray;
+    padding: 20px;
+    color: white;
+}
