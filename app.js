@@ -11,35 +11,16 @@ app.use(express.static(__dirname + '/public'));
 app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views');
 
-
 //rutas
-app.get( '/', (req, res) => {
-    res.render('index', {
-        titulo: 'Estas en el INDEX.'
-    });
-})
+app.use('/', require('./routers/routerFront'));
 
-app.get('/productos', (req, res) => {
-    res.render('productos', {
-        titulo: 'Estas en PRODUCTOS.'
-    });
-})
+//404
+app.use((req, res, next) => {
+    res.status(404).render('404', {
+        error: '404',
+        msg: 'Página no encontrada.'
+    })
 
-app.get('/servicios', (req, res) => {
-    res.render('servicios', {
-        titulo: 'Estas en SERVICIOS.'
-    });
-})
-
-app.get('/quienessomos', (req, res) => {
-    res.render('quienessomos', {
-        titulo: 'Estas en QUIENES SOMOS.'
-    });
-})
-app.get('/contacto', (req, res) => {
-    res.render('contacto', {
-        titulo: 'Estas en CONTACTO.'
-    });
 })
 
 //Listener
