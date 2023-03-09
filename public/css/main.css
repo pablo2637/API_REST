@@ -1,44 +1,132 @@
 * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
 nav {
-    text-align: right;
-    padding: 10px;
-    background-color: rgb(0, 0, 0);
+  text-align: right;
+  padding: 10px;
+  background-color: rgb(0, 0, 0);
 }
 
 a {
-    text-decoration: none;
-    color: rgb(255, 255, 255);
-    padding-right: 10px;
-    display: inline-block;
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+  padding-right: 10px;
+  display: inline-block;
 }
 
 a:hover {
-    color: rgb(93, 252, 101);
+  color: rgb(93, 252, 101);
 }
 
 body {
-    font-family: 'arial';
+  font-family: "arial";
 }
 
 header {
-    background-color: rgb(65, 73, 50);
-    padding: 20px;
-    color: white;
+  background-color: rgb(65, 73, 50);
+  padding: 20px;
+  color: white;
 }
 
 main {
-    text-align: center;
-    font-size: 3em;
-    margin: 50px;
+  text-align: center;
+  /* font-size: 3em; */
+  margin: 50px;
 }
 
 footer {
-    background-color: darkslategray;
-    padding: 20px;
-    color: white;
+  background-color: darkslategray;
+  padding: 20px;
+  color: white;
+}
+
+.instalacion {
+  width: 90%;
+  margin: 20px auto;
+  background-color: rgba(0, 0, 0, 0.116);
+  box-shadow: 1px 1px 3px black;
+  padding: 10px;
+}
+
+h2 {
+  color: white;
+  text-shadow: 0 0 3px black;
+  padding: 5px;
+}
+
+p {
+  padding: 5px;
+}
+
+.instalacion p:first-of-type span {
+  font-size: 0.9em;
+  font-weight: bold;
+}
+
+.instalacion p:not(:first-of-type) span {
+  color: rgb(3, 139, 3);
+  font-weight: bold;
+}
+
+.instalacion p:last-of-type span {
+  color: rgb(9, 120, 148);
+  font-weight: bold;
+}
+
+em {
+  font-size: 0.7em;
+}
+
+button {
+  width: 150px;
+  padding: 3px;
+  color: rgb(3, 109, 145);
+  font-weight: bold;
+  float: right;
+  cursor: pointer;
+}
+
+@keyframes demanda {
+  0% {
+    opacity: 0.5;
+  }
+
+  15% {
+    opacity: 0;
+  }
+
+  30% {
+    opacity: 0.5;
+  }
+
+  45% {
+    opacity: 1;
+  }
+}
+
+h3 {
+  background-color: rgb(255, 0, 0);
+  border-radius: 10px;
+  box-shadow: 0 0 3px black;
+
+  padding: 6px;
+  width: 40%;
+  margin: 5px auto;
+
+  font-size: 1.3em;
+  color: rgb(245, 245, 245);
+  text-align: center;
+
+  animation: demanda 800ms ease-in 2s infinite;
+}
+
+img {
+  height: 100px;
+  float: right;
+  border-radius: 10px;
+  border: 1px solid rgb(0, 102, 150);
+  box-shadow: 0 0 4px rgb(0, 102, 150);
 }

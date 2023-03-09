@@ -1,7 +1,16 @@
 <%- include( 'templates/header' ) %>
 
     <main>
-        <p><%- titulo %></p>
+        <h1><%- titulo %></h1>
+        <% servicios.forEach(element=> { %>
+            <p>
+                <%= element.servicio %>
+            </p>
+            <p>
+                <%= element.descripcion %>
+            </p>
+            <% }) %>
+               
     </main>
 
     <%- include('templates/footer') %>

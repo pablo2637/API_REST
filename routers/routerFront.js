@@ -4,6 +4,7 @@ const router = express.Router();
 const { getIndex,
     getProductos,
     getServicios,
+    getInstalacion,
     getQuienesSomos,
     getContacto } = require('../controllers/frontControllers');
 
@@ -15,6 +16,9 @@ router.get('/productos', getProductos);
 
 //Servicios
 router.get('/servicios', getServicios);
+
+//Instalación
+router.get('/instalacion', getInstalacion);
 
 //Quienes Somos
 router.get('/quienessomos', getQuienesSomos);

@@ -1,8 +1,13 @@
 const express = require('express');
+const cors = require('cors');
+require('dotenv').config();
+const { conexion } = require('./helpers/dbConnect')
 
 //configurar servidor
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT;
+
+app.use(cors());
 
 //establece carpeta static
 app.use(express.static(__dirname + '/public'));
@@ -10,6 +15,9 @@ app.use(express.static(__dirname + '/public'));
 //establecer template engine
 app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views');
+
+//Conexión
+conexion();
 
 //rutas
 app.use('/', require('./routers/routerFront'));
