@@ -4,4 +4,118 @@
         <h1><%- titulo %></h1>
     </main>
 
+    <table>
+        <thead>
+            <tr>
+                <th class="tbEncabezado" colspan="4">PISCINAS</th>
+            </tr>
+            <tr>
+                <th>Imágen</th>
+                <th>Producto</th>
+                <th>Precio</th>                
+            </tr>
+        </thead>
+        <tbody>
+            <% piscinas.forEach(item=> { %>
+                <tr>
+                    <td><img src="<%= item.imagen %>" alt=""></td>
+                    <td>
+                        <%= item.descripcion %>
+                    </td>
+                    <td>
+                        <%= item.precio %>€
+                    </td>
+                </tr>
+                <% }) %>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td class="cantProductos" colspan="4">Mostrando <%= piscinas.length %> piscinas.</td>
+            </tr>
+        </tfoot>
+
+    </table>
+
+    <table>
+        <thead>
+            <tr>
+                <th class="tbEncabezado" colspan="4">BARBACOAS</th>
+            </tr>
+            <tr>
+                <th>Imágen</th>
+                <th>Producto</th>
+                <th>Precio</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <% barbacoas.forEach(item=> { %>
+                <tr>
+                    <td><img src="<%= item.imagen %>" alt=""></td>
+                    <td>
+                        <%= item.descripcion %>
+                    </td>
+                    <td>
+                        <%= item.precio %>€
+                    </td>
+                    <td>
+                        <button class="add">Añadir</button>
+                    </td>
+                </tr>
+                <% }) %>
+
+        </tbody>
+        <tfoot>
+            <tr>
+                <td class="cantProductos" colspan="4">Mostrando <%= barbacoas.length %> barbacoas.</td>
+            </tr>
+        </tfoot>
+
+    </table>
+
+    <table>
+        <thead>
+
+            <tr>
+                <th class="tbEncabezado" colspan="4">MOBILIARIO</th>
+            </tr>
+            <tr>
+                <th>Imágen</th>
+                <th>Producto</th>
+                <th>Precio</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <% mobiliario.forEach(item=> { %>
+                <tr>
+                    <td><img src="<%= item.imagen %>" alt=""></td>
+                    <td>
+                        <%= item.descripcion %>
+                    </td>
+                    <td>
+                        <%= item.precio %>€
+                    </td>
+                    <td>
+                        <button class="add">Añadir</button>
+                    </td>
+                </tr>
+                <% }) %>
+
+        </tbody>
+        <tfoot>
+            <tr>
+                <td class="cantProductos" colspan="4">Mostrando <%= mobiliario.length %>
+                        muebles.</td>
+            </tr>
+            <tr>
+                <td colspan="4">Total de productos mostrados: <%= piscinas.length + barbacoas.length +mobiliario.length
+                        %>.</td>
+            </tr>
+        </tfoot>
+
+    </table>
+
     <%- include('templates/footer') %>

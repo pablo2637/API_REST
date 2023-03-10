@@ -130,3 +130,45 @@ img {
   border: 1px solid rgb(0, 102, 150);
   box-shadow: 0 0 4px rgb(0, 102, 150);
 }
+
+
+table {
+  width: 90%;
+  margin: 0 auto;
+}
+
+thead {
+  border-bottom: 2px solid black;
+
+}
+
+td {
+  border-bottom: 1px dotted black;
+  text-align: center;
+  padding: 10 0;
+}
+
+td:nth-of-type(2) {
+  text-align: left;
+  text-indent: 5px;
+
+}
+
+.cantProductos {
+  font-weight: bold;
+  text-align: left;
+}
+
+tfoot {
+  border-top: 2px solid black;
+  text-size-adjust: 1.2em;
+  color: blue;
+}
+
+.tbEncabezado {
+  text-align: center;
+  font-size: 1.5em;
+  color: red;
+  border-bottom: 1px solid black;
+  padding-top: 20px;
+}

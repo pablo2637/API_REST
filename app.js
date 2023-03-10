@@ -16,11 +16,17 @@ app.use(express.static(__dirname + '/public'));
 app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views');
 
+// parse application/x-www-form-urlencoded
+app.use(express.urlencoded({ extended: false }))
+// parse application/json
+app.use(express.json())
+
 //Conexión
 conexion();
 
 //rutas
 app.use('/', require('./routers/routerFront'));
+app.use('/api/v1', require('./routers/routerApi'));
 
 //404
 app.use((req, res, next) => {

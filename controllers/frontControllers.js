@@ -1,6 +1,6 @@
-// const { response } = require('express');
 const Servicio = require("../models/servicioModel");
-const Instalacion = require("../models/servicioInstalacion");
+const Instalacion = require("../models/instalacionModel");
+const Producto = require("../models/productosModel");
 
 const getIndex = (req, res) => {
   res.render("index", {
@@ -9,11 +9,26 @@ const getIndex = (req, res) => {
   });
 };
 
-const getProductos = (req, res) => {
-  res.render("productos", {
-    titulo: "Estas en PRODUCTOS.",
-    tituloURL: "Productos",
-  });
+const getProductos = async (req, res) => {
+  try {
+    const piscinas = await Producto.find({ "tipo": "piscinas" });
+    const barbacoas = await Producto.find({ "tipo": "barbacoas" });
+    const mobiliario = await Producto.find({ "tipo": "mobiliario" });
+
+    res.render("productos", {
+      titulo: "PRODUCTOS",
+      tituloURL: "Productos",
+      piscinas, barbacoas, mobiliario
+    });
+
+  } catch (error) {
+    res.render("productos", {
+      titulo: 'error: ' + error,
+      ok: false,
+      msg: "Error al traer los datos.",
+    });
+  }
+
 };
 
 const getInstalacion = async (req, res) => {
