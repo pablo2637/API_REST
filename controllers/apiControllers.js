@@ -9,6 +9,7 @@ const getProductos = async (req, res) => {
         return res.status(200).json({
             ok: true,
             msg: 'getProductos: recuperando todos los productos.',
+            total_productos: productos.length,
             productos
         })
 
@@ -16,6 +17,43 @@ const getProductos = async (req, res) => {
         return res.status(404).json({
             ok: false,
             msg: 'Error getProductos: fallo al intentar recuperar todos los productos',
+            error
+        })
+    }
+}
+
+const getProductosCategoria = async ({ params, query }, res) => {
+    try {
+        let total = 0;
+        const categoria = params.categoria;
+        const limite = parseInt(query.limit) || 0;
+
+        console.log('get request: category', categoria, '- limit', limite);
+        const productos = await Producto.find({ "tipo": categoria });
+        if (limite > 0 && productos) {
+            total = productos.length;
+            productos.splice(limite - 1, productos.length - limite);
+        }
+
+        if (productos) {
+            const total_productos = total > 0 ? total : productos.length;
+            return res.status(200).json({
+                ok: true,
+                msg: 'getProductosCategoria: se han encontrado productos con la categoria ' + categoria,
+                total_productos,
+                limite,
+                productos
+            })
+        }
+        else return res.status(404).json({
+            ok: false,
+            msg: 'getProductosCategoria: no existe la categoria ' + categoria
+        })
+
+    } catch (error) {
+        return res.status(500).json({
+            ok: false,
+            msg: 'Error getProductosCategoria: fallo al intentar buscar la categoria ' + params.categoria,
             error
         })
     }
@@ -115,5 +153,6 @@ module.exports = {
     getProducto,
     postProducto,
     deleteProducto,
+    getProductosCategoria,
     scrapAndPostProductos
 }

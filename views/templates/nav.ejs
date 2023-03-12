@@ -1,8 +1,34 @@
 <nav>
-    <a href="/">Index</a>
-    <a href="productos">Productos</a>
-    <a href="servicios">Servicios</a>
-    <a href="instalacion">Instalación</a>
-    <a href="quienessomos">Quienes Somos</a>
-    <a href="contacto">Contacto</a> 
+    <div id="divMenu">
+        <div>
+            <button id="btnMenu"><i class="fa-solid fa-bars"></i> </button>
+        </div>
+        <div>
+            <button id="btnCart"><i class="fa-solid fa-basket-shopping"></i></button>
+        </div>
+    </div>
+
+    <div class="divNavContenedor">
+        <div class="divNavHijo">
+            <a href="/">Index</a>
+        </div>
+        <div class="divNavHijo">
+            <a href="productos">Productos</a>
+        </div>
+        <div class="divNavHijo">
+            <a href="servicios">Servicios</a>
+        </div>
+        <div class="divNavHijo">
+            <a href="instalacion">Instalación</a>
+        </div>
+        <div class="divNavHijo">
+            <a href="quienessomos">Quienes Somos</a>
+        </div>
+        <div class="divNavHijo">
+            <a href="contacto">Contacto</a>
+        </div>
+    </div>
+
+    <%- include('cart') %>
+
 </nav>

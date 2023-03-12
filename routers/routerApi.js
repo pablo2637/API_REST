@@ -6,10 +6,14 @@ const {
     getProducto,
     postProducto,
     scrapAndPostProductos,
+    getProductosCategoria,
     deleteProducto } = require('../controllers/apiControllers')
 
 //Todos
 router.get('/productos', getProductos);
+
+//Todos x Categoria
+router.get('/productos/categoria/:categoria', getProductosCategoria);
 
 //Uno
 router.get('/productos/id/:id', getProducto);

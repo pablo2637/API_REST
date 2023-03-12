@@ -1,0 +1,35 @@
+<div class="divTable">
+    <h2 class="tbEncabezado"><%- tituloTabla %></h2>
+    <table>
+
+        <thead>
+            <tr>
+                <th>Imágen</th>
+                <th>Producto</th>
+                <th>Precio</th>
+                <th></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <% producto.forEach(item=> { %>
+                <tr>
+                    <td><img src="<%- item.imagen %>" alt=""></td>
+                    <td> <%- item.descripcion %> </td>
+                    <td> <%- item.precio %>€ </td>
+                    <td>
+                        <button class="btnAddToCart"><i id="<%- item._id %>" class="fa-solid fa-cart-plus"></i></button>
+                    </td>
+                </tr>
+                <% }) %>
+        </tbody>
+        
+        <tfoot>
+            <tr>
+                <td class="cantProductos" colspan="4">Mostrando <%- producto.length %> productos de <%- tituloFooter
+                            %>.</td>
+            </tr>
+        </tfoot>
+
+    </table>
+</div>

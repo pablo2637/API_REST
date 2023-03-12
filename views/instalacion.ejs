@@ -1,26 +1,35 @@
-<%- include( 'templates/header' ) %>
+<%- include( 'templates/header' ,{tituloURL} ) %>
 
-<main>
-  <h1><%- titulo %></h1>
-</main>
+  <main>
+    <h1><%- titulo %></h1>
+  </main>
 
-<% instalaciones.forEach(inst=> { %>
-<div class="instalacion">
-  <button>Seleccionar</button>
+  <% instalaciones.forEach(inst=> { %>
+    <div class="instalacion">
+      <button>Seleccionar</button>
 
-  <h2><%= inst.tipo %></h2>
-  <div>
-    <% if (inst.img) { %>
-    <img src="<%= inst.img %>" alt="" />
-    <% } %>
-  </div>
+      <h2>
+        <%= inst.tipo %>
+      </h2>
+      <div>
+        <% if (inst.img) { %>
+          <img src="<%= inst.img %>" alt="" />
+          <% } %>
+      </div>
 
-  <p>Descripción: <span> <%= inst.descripcion %> </span></p>
-  <p>Precio: <em>desde</em> <span> <%= inst.costo %>€ </span></p>
-  <p>Tiempo de ejecución: <span> <%= inst.dias %> dias. </span></p>
+      <p>Descripción: <span>
+          <%= inst.descripcion %>
+        </span></p>
+      <p>Precio: <em>desde</em> <span>
+          <%= inst.costo %>€
+        </span></p>
+      <p>Tiempo de ejecución: <span>
+          <%= inst.dias %> dias.
+        </span></p>
 
-  <% if (inst.demanda) { %>
-  <h3>(Alta demanda)</h3>
-  <% } %>
-</div>
-<% }) %> <%- include('templates/footer') %>
+      <% if (inst.demanda) { %>
+        <h3>(Alta demanda)</h3>
+        <% } %>
+    </div>
+    <% }) %>
+      <%- include('templates/footer') %>

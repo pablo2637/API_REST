@@ -18,7 +18,11 @@ const getProductos = async (req, res) => {
     res.render("productos", {
       titulo: "PRODUCTOS",
       tituloURL: "Productos",
-      piscinas, barbacoas, mobiliario
+      productos: [
+        { producto: piscinas, tituloTabla: 'PISCINAS', tituloFooter: 'piscinas' },
+        { producto: barbacoas, tituloTabla: 'BARBACOAS', tituloFooter: 'barbacoas' },
+        { producto: mobiliario, tituloTabla: 'MOBILIARIO', tituloFooter: 'mobiliario' }
+      ]
     });
 
   } catch (error) {
@@ -28,7 +32,6 @@ const getProductos = async (req, res) => {
       msg: "Error al traer los datos.",
     });
   }
-
 };
 
 const getInstalacion = async (req, res) => {

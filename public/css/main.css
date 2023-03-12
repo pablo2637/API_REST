@@ -4,61 +4,183 @@
   box-sizing: border-box;
 }
 
-nav {
-  text-align: right;
-  padding: 10px;
-  background-color: rgb(0, 0, 0);
-}
-
-a {
-  text-decoration: none;
-  color: rgb(255, 255, 255);
-  padding-right: 10px;
-  display: inline-block;
-}
-
-a:hover {
-  color: rgb(93, 252, 101);
-}
+/* Body ****************************************************** */
 
 body {
   font-family: "arial";
+  min-width: 340px;
 }
 
+/* Header *************************************************** */
 header {
   background-color: rgb(65, 73, 50);
-  padding: 20px;
   color: white;
 }
 
-main {
+header img {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+}
+
+header p {
+  font-size: 1.2em;
+  padding: 15px;
+}
+
+
+/* Main **************************************************** */
+main h1 {
+  text-indent: 10px;
+  text-align: right;
+  margin-top: 20px;
+  padding: 20px;
+  font-size: 2.5em;
+  color: rgb(105, 243, 190);
+  text-shadow: 0 0 5px rgb(65, 73, 50);
+}
+
+
+/* Barra de Navegación *************************************** */
+
+.ocultar {
+  display: none;
+}
+
+#divMenu {
+  width: 100%;
+  background-color: rgb(54, 97, 70);
+  padding: 5px 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+#divMenu div:last-of-type {
+  text-align: right;
+}
+
+#btnMenu,
+#btnCart {
+  border: none;
+  background-color: transparent;
+  font-size: 1.5em;
+  color: white;
+  cursor: pointer;
+}
+
+#btnCart {
+  color: rgb(124, 233, 157);
+}
+
+.divNavContenedor {
+  position: absolute;
+  width: 150px;
+  background-color: rgb(54, 97, 70);
+  box-shadow: 2px 2px 5px 1px black;
+
+  transform: translate3d(-105%, 0px, 0px);
+  transition: transform 0.20s cubic-bezier(0.05, 1.04, 0.72, 0.98) 0s;
+  z-index: 1001;
+}
+
+.divNavContenedor.mostrarNav {
+  transform: translate3d(0px, 0px, 0px);
+}
+
+.divNavHijo {
+  display: flex;
+  align-items: center;
+  height: 30px;
+}
+
+.divNavHijo a {
+  padding-top: 5px;
+  padding-left: 8px;
+  width: 100%;
+  height: 100%;
+  color: rgb(255, 255, 255);
+  text-align: left;
+  text-decoration: none;
+
+  transition: background-color 1s ease-out;
+}
+
+.divNavHijo a:hover {
+  background-color: black;
+}
+
+/* Cart ****************************************************** */
+
+#divCart {
+  position: absolute;
+  width: 750px;
+  height: 300px;
+  right: 0;
+  background-color: rgb(255, 255, 255);
+  color: rgb(2, 85, 133);
+  box-shadow: 0 0 3px black;
+
+  transform: translate3d(105%, 0, 0px);
+  transition: transform 0.35s cubic-bezier(0.05, 1.04, 0.72, 0.98) 0s;
+  z-index: 1001;
+}
+
+#divCart.mostrarCart {
+  transform: translate3d(0px, 0px, 0px);
+  right: 5px;
+}
+
+#divCart table {
+  width: 100%;
+  margin: 5px 0;
+  border-collapse: collapse;
+  table-layout: fixed;
+  border: 1px solid red;
   text-align: center;
-  /* font-size: 3em; */
-  margin: 50px;
+  font-weight: normal;
 }
 
-footer {
-  background-color: darkslategray;
-  padding: 20px;
-  color: white;
+#divCart tbody tr:first-child td:nth-child(2) {
+  text-align: left;
+  text-indent: 5px;
 }
 
+#divCart thead tr th:nth-child(1),
+#divCart tbody tr:first-child td:nth-child(1) {
+  width: 14%;
+}
+
+#divCart th {
+  font-size: 1.1em;
+  padding: 3px;
+}
+
+#divCart thead tr th:nth-child(3),
+#divCart thead tr th:nth-child(4),
+#divCart thead tr th:nth-child(5),
+#divCart tbody tr:first-child td:nth-child(3),
+#divCart tbody tr:first-child td:nth-child(4),
+#divCart tbody tr:first-child td:nth-child(5) {
+  width: 12%;
+}
+
+#divCart thead tr th:nth-child(6),
+#divCart tbody tr:first-child td:nth-child(6) {
+  width: 5%;
+}
+
+#divCart td img {
+  height: 50px;
+  vertical-align: middle;
+}
+
+/* Instalación ************************************************ */
 .instalacion {
   width: 90%;
   margin: 20px auto;
   background-color: rgba(0, 0, 0, 0.116);
   box-shadow: 1px 1px 3px black;
   padding: 10px;
-}
-
-h2 {
-  color: white;
-  text-shadow: 0 0 3px black;
-  padding: 5px;
-}
-
-p {
-  padding: 5px;
 }
 
 .instalacion p:first-of-type span {
@@ -80,95 +202,129 @@ em {
   font-size: 0.7em;
 }
 
-button {
-  width: 150px;
-  padding: 3px;
-  color: rgb(3, 109, 145);
-  font-weight: bold;
-  float: right;
-  cursor: pointer;
+
+/* Table Productos **************************************** */
+.divTable {
+  overflow-x: auto;
+  padding: 20px 0;
 }
 
-@keyframes demanda {
-  0% {
-    opacity: 0.5;
-  }
-
-  15% {
-    opacity: 0;
-  }
-
-  30% {
-    opacity: 0.5;
-  }
-
-  45% {
-    opacity: 1;
-  }
-}
-
-h3 {
-  background-color: rgb(255, 0, 0);
-  border-radius: 10px;
-  box-shadow: 0 0 3px black;
-
-  padding: 6px;
-  width: 40%;
-  margin: 5px auto;
-
-  font-size: 1.3em;
-  color: rgb(245, 245, 245);
+.divTable h2 {
+  padding: 10px;
+  color: darkolivegreen;
   text-align: center;
-
-  animation: demanda 800ms ease-in 2s infinite;
+  font-size: 1.8em;
 }
 
-img {
-  height: 100px;
-  float: right;
-  border-radius: 10px;
-  border: 1px solid rgb(0, 102, 150);
-  box-shadow: 0 0 4px rgb(0, 102, 150);
-}
-
-
-table {
+.divTable table {
   width: 90%;
   margin: 0 auto;
-}
-
-thead {
-  border-bottom: 2px solid black;
-
-}
-
-td {
-  border-bottom: 1px dotted black;
-  text-align: center;
-  padding: 10 0;
-}
-
-td:nth-of-type(2) {
-  text-align: left;
-  text-indent: 5px;
-
-}
-
-.cantProductos {
-  font-weight: bold;
-  text-align: left;
-}
-
-tfoot {
-  border-top: 2px solid black;
-  text-size-adjust: 1.2em;
-  color: blue;
+  border-collapse: collapse;
+  table-layout: fixed;
 }
 
 .tbEncabezado {
-  text-align: center;
-  font-size: 1.5em;
-  color: red;
+  padding: 10px;
+  font-size: 1.4em;
+  text-indent: 10px;
+}
+
+.divTable thead tr th {
   border-bottom: 1px solid black;
-  padding-top: 20px;
+  background-color: rgb(36, 66, 37);
+  color: white;
+  padding: 8px;
+}
+
+.divTable thead tr th:nth-child(1),
+.divTable tbody tr:first-child td:nth-child(1) {
+  width: 20%;
+}
+
+.divTable thead tr th:nth-child(3),
+.divTable thead tr th:nth-child(4),
+.divTable tbody tr:first-child td:nth-child(3),
+.divTable tbody tr:first-child td:nth-child(4) {
+  width: 10%;
+}
+
+.divTable td img {
+  height: 140px;
+  vertical-align: middle;
+}
+
+.divTable tbody td:nth-child(3) {
+  font-weight: bold;
+}
+
+.divTable tbody tr:hover {
+  color: rgb(238, 2, 2);
+  font-weight: bold;
+  text-shadow: 1px 1px 15px rgb(114, 5, 5);
+  cursor: pointer;
+}
+
+.divTable td {
+  border-bottom: 1px dotted black;
+  text-align: center;
+  padding: 2px;
+}
+
+.divTable td:nth-child(2) {
+  text-align: left;
+  text-indent: 5px;
+}
+
+.btnAddToCart {
+  font-size: 1.5em;
+  color: rgb(9, 76, 153);
+  padding: 5px;
+  background-color: transparent;
+  box-shadow: 0 0 3px 1px black;
+  border-radius: 5px;
+  border: none;
+}
+
+.btnAddToCart:hover {
+  background-color: rgb(9, 76, 153);
+  box-shadow: 0 0 0 0;
+  color: white;
+  cursor: pointer;
+}
+
+.divTable tfoot {
+  border-top: 2px solid black;
+  border-bottom: none;
+  text-size-adjust: 1.2em;
+}
+
+.cantProductos {
+  background-color: black;
+  color: white;
+  text-align: left;
+  text-indent: 5px;
+  padding: 5px;
+}
+
+
+/* Footer ******************************************************* */
+footer {
+  background-color: rgb(65, 73, 50);
+  padding: 20px;
+  color: white;
+  text-align: center;
+  font-size: 0.9em;
+  margin-top: 30px;
+}
+
+footer a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+
+}
+
+footer a:hover {
+  text-decoration: underline;
+  color: rgb(0, 132, 255);
 }

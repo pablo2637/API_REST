@@ -31,6 +31,7 @@ app.use('/api/v1', require('./routers/routerApi'));
 //404
 app.use((req, res, next) => {
     res.status(404).render('404', {
+        tituloURL: '404 - Página no encontrada',
         error: '404',
         msg: 'Página no encontrada.'
     })
