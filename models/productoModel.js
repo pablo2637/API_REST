@@ -1,14 +1,22 @@
 const { Schema, model } = require('mongoose');
 
 const ProductoSchema = new Schema({
-    tipo: String,
+    tipo: {
+        type: String,
+        required: true
+    },
     descripcion: {
         type: String,
         required: true,
         trim: true
     },
-    imagen: String,
-    precio: Number,
+    imagen: {
+        type: String,        
+    },
+    precio: {
+        type: Number,
+        required: true
+    },
     fecha: {
         type: Date,
         default: Date.now

@@ -391,27 +391,120 @@ footer a:hover {
 /* ADMIN ******************************************************* */
 #divFormulario {
   width: 90%;
-  margin: 0 auto;
-  margin: 15px;
+  margin: 10px auto;
+  padding: 5px;
+  background-color: rgb(253, 255, 239);
+  box-shadow: 0 0 5px 1px black;
+  display: grid;
+  grid-template-columns: 0.8fr 0.2fr;
+}
+
+#divFormulario form {
+  padding: 10px;
+  grid-column: 1 / 2;
+}
+
+#divFormulario p {
+  grid-column: 1 / 2;
+  padding: 5px 10px;
+  font-weight: bold;
+}
+
+#spnID,
+#spnFechaAlta {
+  font-weight: normal;
+  font-size: 0.9em;
+}
+
+#divFormulario input[type='text'] {
+  margin-bottom: 10px;
 }
 
 #divFormulario input {
   display: block;
+  color: darkblue;
+
+  border: 1px solid black;
 }
 
-#divTablaAdmin {
+#divFormulario label {
+  font-weight: bold;
+}
+
+#txtTipo {
+  width: 150px;
+  padding: 5px 3px;
+}
+
+#txtDesc {
+  width: 400px;
+  padding: 5px 3px;
+}
+
+#txtImg {
+  width: 100%;
+  padding: 5px 3px;
+}
+
+#numPrecio {
+  width: 70px;
+  padding: 3px;
+}
+
+#divImgDash {
+  grid-row: 1 / 4;
+  justify-self: center;
+  align-self: center;
+  grid-column: 2 / 3;
+}
+
+#divFormulario img {
+
+  width: 150px;
+  border: 1px solid black;
+  box-shadow: 0 0 3px black;
+}
+
+#btnsFormDash {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  margin-top: 10px;
+}
+
+#btnSubmitDash,
+#btnModificarDash,
+#btnEliminarDash,
+#btnCancelarDash {
+  width: 150px;
+  padding: 8px;
+  box-shadow: 1px 1px 3px 1px rgb(0, 0, 0);
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* ADMIN TABLAS ************************************************* */
+
+#divTablaAdmin h2,
+#divTablaServicios h2 {
+  margin-top: 20px;
+}
+
+#divTablaAdmin,
+#divTablaServicios {
   margin: 0 auto;
   width: 95%;
   font-size: 0.8em;
 }
 
-#divTablaAdmin table {
+#divTablaAdmin table,
+#divTablaServicios table {
   width: 100%;
   border: 2px solid black;
   border-collapse: collapse;
 }
 
-#divTablaAdmin th {
+#divTablaAdmin th,
+#divTablaServicios th {
   font-size: 1.3em;
   padding: 10px;
   background-color: black;
@@ -423,8 +516,15 @@ footer a:hover {
   border: 1px black red;
 }
 
-#divTablaAdmin td {
+#divTablaAdmin td,
+#divTablaServicios td {
   padding: 5px;
   border: 1px dotted black;
   border-collapse: collapse;
+}
+
+#divTablaAdmin tr:hover,
+#divTablaServicios tr:hover {
+  cursor: pointer;
+  color: red;
 }

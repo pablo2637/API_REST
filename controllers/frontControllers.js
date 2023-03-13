@@ -1,6 +1,6 @@
 const Servicio = require("../models/servicioModel");
 const Instalacion = require("../models/instalacionModel");
-const Producto = require("../models/productosModel");
+const Producto = require("../models/productoModel");
 
 const getIndex = (req, res) => {
   res.render("index", {
@@ -54,7 +54,7 @@ const getServicios = async (req, res) => {
   try {
     const servicios = await Servicio.find();
     res.render("servicios", {
-      titulo: "Estas en SERVICIOS.",
+      titulo: "SERVICIOS",
       tituloURL: "Servicios",
       servicios,
     });
@@ -80,15 +80,16 @@ const getContacto = (req, res) => {
   });
 };
 
-const showAdmin = async (req, res) => {
+const showDashboard = async (req, res) => {
   try {
     const productos = await Producto.find();
+    const servicios = await Servicio.find();
 
-    if (productos) {
-      res.render("admin", {
+    if (productos && servicios) {
+      res.render("dashboard", {
         titulo: "Menú de Administrador",
-        tituloURL: "Admin",
-        productos
+        tituloURL: "dashboard",
+        productos, servicios
       });
     }
 
@@ -108,5 +109,5 @@ module.exports = {
   getInstalacion,
   getQuienesSomos,
   getContacto,
-  showAdmin
+  showDashboard
 };

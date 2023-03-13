@@ -7,6 +7,7 @@ const { conexion } = require('./helpers/dbConnect')
 const app = express();
 const port = process.env.PORT;
 
+//Cors
 app.use(cors());
 
 //establece carpeta static
@@ -26,7 +27,9 @@ conexion();
 
 //rutas
 app.use('/', require('./routers/routerFront'));
-app.use('/api/v1', require('./routers/routerApi'));
+app.use('/api/v1', require('./routers/routerApiProductos'));
+app.use('/api/v1', require('./routers/routerApiServicios'));
+app.use('/api/v1', require('./routers/routerApiUsuarios'));
 
 //404
 app.use((req, res, next) => {
@@ -40,5 +43,5 @@ app.use((req, res, next) => {
 
 //Listener
 app.listen(port, () => {
-    console.log(`Servidor a la escucha del puerto ${port}`);
+    console.log(`Server listening on port ${port}...`);
 })
