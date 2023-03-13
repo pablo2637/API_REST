@@ -24,8 +24,8 @@ router.post('/productos/', postProducto);
 //Modificar
 router.put('/productos/:id',);
 
-//Admin
-router.get('/admin', scrapAndPostProductos);
+//Scrapping
+router.get('/scrap', scrapAndPostProductos);
 
 //Borrar
 router.delete('/productos/id/:id', deleteProducto);

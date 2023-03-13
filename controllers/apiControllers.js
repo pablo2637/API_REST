@@ -4,19 +4,32 @@ const searchWeb = require('../helpers/scrapping');
 
 const getProductos = async (req, res) => {
     try {
-        console.log('get request: all');
+        const limite = parseInt(query.limit) || 0;
+        let total = 0;
+
+        console.log('get request: all - limit:', limite);
         const productos = await Producto.find();
-        return res.status(200).json({
-            ok: true,
-            msg: 'getProductos: recuperando todos los productos.',
-            total_productos: productos.length,
-            productos
-        })
+        if (limite > 0 && productos) {
+            total = productos.length;
+            productos.splice(limite - 1, productos.length - limite);
+        }
+
+        if (productos) {
+            const total_productos = total > 0 ? total : productos.length;
+            return res.status(200).json({
+                ok: true,
+                msg: 'getProductos: recuperando todos los productos.',
+                total_productos: productos.length,
+                productos
+            })
+        }
 
     } catch (error) {
         return res.status(404).json({
             ok: false,
             msg: 'Error getProductos: fallo al intentar recuperar todos los productos',
+            total_productos,
+            limite,
             error
         })
     }

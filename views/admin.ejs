@@ -1,15 +1,53 @@
 <%- include( 'templates/header' ,{tituloURL} ) %>
 
     <main>
-        <h1>Menú de Administrador</h1>
+        <h1><%- titulo %></h1>
+
+        <div id="divFormulario">
+            <form action="">
+                <p>ID:</p>
+
+                <label for="txtTipo">Tipo:</label>
+                <input type="text" name="txtTipo" id="txtTipo">
+
+                <label for="txtDesc">Descripción:</label>
+                <input type="text" name="txtDesc" id="txtDesc">
+
+                <label for="numPrecio">Precio:</label>
+                <input type="number" name="numPrecio" id="numPrecio" min="1">
+
+                <input type="submit" value="Modificar" id="btnSubmit">
+
+                <img id="imgForm" src="" alt="">
+            </form>
+        </div>
+
+        <div id="divTablaAdmin">
+            <h2>Productos: <%- productos.length %> </h2>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th></th>
+                        <th>TIPO</th>
+                        <th>DESCRIPCIÓN</th>
+                        <th>PRECIO</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% productos.forEach(item=> { %>
+                        <tr>
+                            <td> <%- item._id %></td>
+                            <td><img src="<%- item.imagen %>" alt=""></td>
+                            <td> <%- item.tipo %></td>
+                            <td> <%- item.descripcion %></td>
+                            <td> <%- item.precio %>€</td>
+                        </tr>
+                        <% }) %>
+                </tbody>
+            </table>
+
     </main>
-
-    <h2>Piscinas: <%= piscinas.length %>
-    </h2>
-    <h2>Barbacoas: <%= barbacoas.length %>
-    </h2>
-    <h2>Mobiliario: <%= mobiliario.length %>
-    </h2>
-
 
     <%- include('templates/footer') %>

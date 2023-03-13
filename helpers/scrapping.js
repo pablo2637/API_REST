@@ -1,7 +1,7 @@
 const puppeteer = require("puppeteer");
 
 const searchWeb = async (web, tipo) => {
-    const browser = await puppeteer.launch({ headless: true });
+    const browser = await puppeteer.launch({ headless: false });
     const page = await browser.newPage();
     const arrayProductos = [];
 
@@ -14,9 +14,11 @@ const searchWeb = async (web, tipo) => {
     await page.waitForNavigation();
     console.log('Entrando en la web');
 
-    await page.type('#search', searchItem, { delay: 100 });
-    await page.click('#search_mini_form > div > div.header__main-input-buttons > button');
-    await page.waitForNavigation();
+    // await page.type('#search', searchItem, { delay: 100 });
+    // await page.click('#search_mini_form > div > div.header__main-input-buttons > button');
+    // await autoScroll(page);
+    // await page.waitForNavigation();
+
 
     console.log('Buscando ' + tipo);
 

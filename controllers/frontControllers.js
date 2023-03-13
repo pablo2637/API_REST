@@ -80,6 +80,27 @@ const getContacto = (req, res) => {
   });
 };
 
+const showAdmin = async (req, res) => {
+  try {
+    const productos = await Producto.find();
+
+    if (productos) {
+      res.render("admin", {
+        titulo: "Menú de Administrador",
+        tituloURL: "Admin",
+        productos
+      });
+    }
+
+  } catch (error) {
+    res.render("admin", {
+      ok: false,
+      msg: "Error al traer los datos.",
+    });
+  }
+
+};
+
 module.exports = {
   getIndex,
   getProductos,
@@ -87,4 +108,5 @@ module.exports = {
   getInstalacion,
   getQuienesSomos,
   getContacto,
+  showAdmin
 };

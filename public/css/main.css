@@ -113,8 +113,10 @@ main h1 {
 
 #divCart {
   position: absolute;
-  width: 750px;
+  width: 650px;
   height: 300px;
+  overflow-y: scroll;
+  font-size: 0.9em;
   right: 0;
   background-color: rgb(255, 255, 255);
   color: rgb(2, 85, 133);
@@ -125,22 +127,43 @@ main h1 {
   z-index: 1001;
 }
 
+#btnCloseCart,
+.addCart,
+.removeCart,
+.subCart {
+  padding: 5px;
+  font-size: 1.1em;
+  color: darkolivegreen;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.removeCart {
+  font-size: 1.2em;
+  color: red;
+}
+
+#btnCloseCart {
+  float: right;
+  color: red;
+}
+
 #divCart.mostrarCart {
   transform: translate3d(0px, 0px, 0px);
   right: 5px;
 }
 
 #divCart table {
-  width: 100%;
+  width: 98%;
   margin: 5px 0;
   border-collapse: collapse;
   table-layout: fixed;
-  border: 1px solid red;
   text-align: center;
   font-weight: normal;
 }
 
-#divCart tbody tr:first-child td:nth-child(2) {
+#divCart tbody td:nth-child(2) {
   text-align: left;
   text-indent: 5px;
 }
@@ -153,6 +176,16 @@ main h1 {
 #divCart th {
   font-size: 1.1em;
   padding: 3px;
+  border-bottom: 2px solid darkolivegreen;
+}
+
+#divCart tbody td:not(:last-of-type) {
+  border-bottom: 1px dotted black;
+  font-size: 0.9em;
+}
+
+#divCart tfoot {
+  border-top: 2px solid darkolivegreen;
 }
 
 #divCart thead tr th:nth-child(3),
@@ -173,6 +206,32 @@ main h1 {
   height: 50px;
   vertical-align: middle;
 }
+
+#totalCart {
+  text-align: right;
+  padding: 5px 15px;
+  font-size: 1.5em;
+  color: white;
+  background-color: black;
+}
+
+.divBtnCesta {
+  margin: 0 auto;
+  padding: 10px;
+  width: 95%;
+  text-align: center;
+}
+
+#btnFinalizarCompra,
+#btnVaciarCesta {
+  padding: 5px;
+  font-size: 1.1em;
+  width: 180px;
+  margin: 10px;
+  cursor: pointer;
+}
+
+
 
 /* Instalación ************************************************ */
 .instalacion {
@@ -327,4 +386,45 @@ footer a {
 footer a:hover {
   text-decoration: underline;
   color: rgb(0, 132, 255);
+}
+
+/* ADMIN ******************************************************* */
+#divFormulario {
+  width: 90%;
+  margin: 0 auto;
+  margin: 15px;
+}
+
+#divFormulario input {
+  display: block;
+}
+
+#divTablaAdmin {
+  margin: 0 auto;
+  width: 95%;
+  font-size: 0.8em;
+}
+
+#divTablaAdmin table {
+  width: 100%;
+  border: 2px solid black;
+  border-collapse: collapse;
+}
+
+#divTablaAdmin th {
+  font-size: 1.3em;
+  padding: 10px;
+  background-color: black;
+  color: white;
+}
+
+#divTablaAdmin img {
+  width: 40px;
+  border: 1px black red;
+}
+
+#divTablaAdmin td {
+  padding: 5px;
+  border: 1px dotted black;
+  border-collapse: collapse;
 }

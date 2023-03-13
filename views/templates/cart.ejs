@@ -1,11 +1,12 @@
 <div id="divCart">
+    <button id="btnCloseCart"><i class="fa-solid fa-xmark"></i></button>
     <table>
         <thead>
             <tr>
                 <th></th>
                 <th>Producto</th>
-                <th>Precio</th>
                 <th>Cantidad</th>
+                <th>Precio</th>
                 <th>subTotal</th>
                 <th></th>
             </tr>
@@ -13,7 +14,16 @@
 
         <tbody> </tbody>
 
-        <tfoot> </tfoot>
-
+        <tfoot>
+            <tr>
+                <td colspan="6" id="totalCart"></td>
+            </tr>
+        </tfoot>
     </table>
+    <div class="divBtnCesta">
+        <button id="btnVaciarCesta">Vaciar Cesta
+            <i class="fa-solid fa-trash"></i></button>
+        <button id="btnFinalizarCompra">Finalizar Compra
+            <i class="fa-solid fa-bag-shopping"></i></button>
+    </div>
 </div>

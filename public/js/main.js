@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const divNavContenedor = document.querySelector('.divNavContenedor');
     const divCart = document.querySelector('#divCart');
     const tbodyCart = document.querySelector('#divCart tbody');
+    const tdTotalCart = document.querySelector('#totalCart');
 
     const arrayCarrito = JSON.parse(localStorage.getItem('arrayCarrito')) || [];
     const URL_API_ID = 'http://localhost:3000/api/v1/productos/id/';
@@ -64,6 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const paintCart = () => {
         const fragment = document.createDocumentFragment();
         const newArray = getLocal();
+        let total = 0;
 
         if (newArray) {
             newArray.forEach(item => {
@@ -78,25 +80,30 @@ document.addEventListener('DOMContentLoaded', () => {
                 const tdProdDesc = document.createElement('TD');
                 tdProdDesc.textContent = item.descripcion;
 
-                const tdProdPrecio = document.createElement('TD');
-                tdProdPrecio.textContent = item.precio;
-
                 const tdProdCant = document.createElement('TD');
-                tdProdCant.textContent = item.cantidad;
+                tdProdCant.innerHTML = `<button class='subCart'>
+                    <i class="fa-solid fa-circle-minus"></i>
+                    </button>${item.cantidad}<button class='addCart'>
+                    <i class="fa-solid fa-circle-plus"></i></button>`;
+
+                const tdProdPrecio = document.createElement('TD');
+                tdProdPrecio.textContent = item.precio + "€";
 
                 const tdProdSubTot = document.createElement('TD');
-                tdProdSubTot.textContent = item.cantidad * item.precio;
+                tdProdSubTot.textContent = (item.cantidad * item.precio) + "€";
+                total += item.cantidad * item.precio;
 
-                const tdBtnQuitar = document.createElement('BUTTON');
-                tdBtnQuitar.classList.add('removeCart');
-                tdBtnQuitar.innerHTML = '<i class="fa-regular fa-circle-xmark"></i>'
+                const tdBtnQuitar = document.createElement('TD');
+                tdBtnQuitar.innerHTML = `<button class='removeCart'><i class="fa-regular fa-circle-xmark"></i></button>`;
 
                 trProdCart.append(tdImgCart, tdProdDesc, tdProdCant, tdProdPrecio, tdProdSubTot, tdBtnQuitar);
                 fragment.append(trProdCart);
             })
-            tbodyCart.innerHTML = '';
-            tbodyCart.append(fragment);
+
         }
+        tdTotalCart.textContent = `Total: ${total}€`;
+        tbodyCart.innerHTML = '';
+        tbodyCart.append(fragment);
 
     }
 

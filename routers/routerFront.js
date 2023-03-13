@@ -6,7 +6,8 @@ const { getIndex,
     getServicios,
     getInstalacion,
     getQuienesSomos,
-    getContacto } = require('../controllers/frontControllers');
+    getContacto,
+    showAdmin } = require('../controllers/frontControllers');
 
 //Home
 router.get('/', getIndex);
@@ -23,8 +24,10 @@ router.get('/instalacion', getInstalacion);
 //Quienes Somos
 router.get('/quienessomos', getQuienesSomos);
 
+//Admin
+router.get('/admin', showAdmin)
+
 //Contacto
 router.get('/contacto', getContacto);
-
 
 module.exports = router;
