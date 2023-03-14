@@ -3,17 +3,31 @@ const router = express.Router();
 
 const { check } = require('express-validator');
 const { validateInputs } = require('../middleware/validarInputs');
+const { validateJWT } = require('../middleware/validarJwt')
 
-const { getUsuario, postUsuario } = require('../controllers/apiControllerUsuario')
+const {
+    postNewUser,
+    postUserLogin,
+    getRenew } = require('../controllers/apiControllerUsuario')
 
-router.get('/usuarios/:id', getUsuario);
-
-router.post('/usuarios/:id', [
-    check('nombre', 'El nombre es obligatorio').not().isEmpty().trim(),
-    check('isAdmin', 'Debe especificar si el usuario es administrador.').not().isEmpty().isBoolean(),
+//Login
+router.post('/', [
+    check('email', 'El email es obligatorio').trim().isEmail().normalizeEmail(),
     check('password', 'La contraseña es obligatoria.').not().isEmpty().trim(),
-    check('email', 'El email es obligatorio.').not().isEmpty().trim().isEmail().normalizeEmail(),
     validateInputs
-], postUsuario);
+], postUserLogin);
+
+
+//Registro
+router.post('/new', [
+    check('nombre', 'El nombre es obligatorio.').not().isEmpty().trim(),
+    check('isAdmin', 'Debe especificar si el usuario es administrador.').not().isEmpty().isBoolean(),
+    check('password', 'La contraseña es obligatoria y debe tener entre 6 y 10 caracteres.').not().isEmpty().trim().isLength({ min: 6, max: 10 }),
+    check('email', 'El email es obligatorio, por favor, verifícalo.').trim().isEmail().normalizeEmail(),
+    validateInputs
+], postNewUser);
+
+//Renew token
+router.get('/renew', validateJWT, getRenew)
 
 module.exports = router;

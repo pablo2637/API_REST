@@ -12,26 +12,26 @@ const {
     deleteServicio } = require('../controllers/apiControllerServicios')
 
 //Todos
-router.get('/servicios/', getServicios);
+router.get('/', getServicios);
 
 //Uno
-router.get('/servicios/id/:id', getServicio);
+router.get('/id/:id', getServicio);
 
 //Crear
-router.post('/servicios/', [
+router.post('/', [
     check('servicio', 'El tipo es obligatorio.').not().isEmpty().trim(),
     check('descripcion', 'La descripción es obligatoria').not().isEmpty().trim(),
     validateInputs],
     postServicio);
 
 //Modificar
-router.put('/servicios/id/:id', [
+router.put('/id/:id', [
     check('servicio', 'El tipo es obligatorio.').not().isEmpty().trim(),
     check('descripcion', 'La descripción es obligatoria').not().isEmpty().trim(),
     validateInputs],
     putServicio);
 
 //Borrar
-router.delete('/servicios/id/:id', deleteServicio);
+router.delete('/id/:id', deleteServicio);
 
 module.exports = router;

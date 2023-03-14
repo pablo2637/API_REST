@@ -12,16 +12,22 @@ const getProductos = async (req, res) => {
             total = productos.length;
             productos.splice(limite - 1, productos.length - limite);
         }
-        if (productos) {
-            const total_productos = total > 0 ? total : productos.length;
-            return res.status(200).json({
-                ok: true,
-                msg: 'getProductos: recuperando todos los productos.',
-                total_productos,
-                limite,
-                productos
+
+        if (!productos) {
+            return res.status(400).json({
+                ok: false,
+                msg: 'getProductos: no hay productos en la bbdd.',
             })
         }
+
+        const total_productos = total > 0 ? total : productos.length;
+        return res.status(200).json({
+            ok: true,
+            msg: 'getProductos: recuperando todos los productos.',
+            total_productos,
+            limite,
+            productos
+        })
 
     } catch (error) {
         return res.status(404).json({
@@ -97,14 +103,16 @@ const getProducto = async ({ params }, res) => {
     try {
         console.log('get request: id ', params.id);
         const producto = await Producto.findById(params.id);
-        if (producto) return res.status(200).json({
+
+        if (!producto) return res.status(400).json({
+            ok: false,
+            msg: 'getProducto: no existe ningún producto con el ObjectId(' + params.id + ')'
+        })
+
+        return res.status(200).json({
             ok: true,
             msg: 'getProducto: se ha encontrado el producto.',
             producto
-        })
-        else return res.status(404).json({
-            ok: false,
-            msg: 'getProducto: no existe ningún producto con el ObjectId(' + params.id + ')'
         })
 
     } catch (error) {
@@ -145,17 +153,18 @@ const putProducto = async ({ body, params }, res) => {
 
         const response = await Producto.findByIdAndUpdate(params.id,
             { tipo, descripcion, precio, imagen }, { new: true });
-        if (response) {
-            console.log('response: ', response)
-            return res.status(200).json({
-                ok: true,
-                msg: 'putProducto: Producto actualizado con exito.',
-                response
-            })
-        } else return res.status(404).json({
+        if (!response) return res.status(400).json({
             ok: false,
             msg: 'putProducto: no existe ningún producto con el ObjectId(' + params.id + ')'
         })
+
+        console.log('response: ', response)
+        return res.status(200).json({
+            ok: true,
+            msg: 'putProducto: Producto actualizado con exito.',
+            response
+        })
+
     } catch (error) {
         return res.status(500).json({
             ok: false,
@@ -169,15 +178,17 @@ const deleteProducto = async ({ params }, res) => {
     try {
         console.log('delete request: id ', params.id);
         const response = await Producto.findByIdAndDelete(params.id);
-        if (response) return res.status(200).json({
+        if (!response) return res.status(400).json({
+            ok: false,
+            msg: 'deleteProducto: no existe ningún producto con el ObjectId(' + params.id + ')'
+        })
+
+        return res.status(200).json({
             ok: true,
             msg: 'deleteProducto: se ha borrado el producto.',
             response
         })
-        else return res.status(404).json({
-            ok: false,
-            msg: 'deleteProducto: no existe ningún producto con el ObjectId(' + params.id + ')'
-        })
+
     } catch (error) {
         return res.status(500).json({
             ok: false,

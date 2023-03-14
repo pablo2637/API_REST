@@ -1,16 +1,15 @@
-<%- include( 'templates/header' ) %>
+<%- include( 'templates/header' , {tituloURL} ) %>
 
     <main>
+
         <h1><%- titulo %></h1>
         <% servicios.forEach(element=> { %>
-            <p>
-                <%= element.servicio %>
-            </p>
-            <p>
-                <%= element.descripcion %>
-            </p>
+            <div class="divServicios">
+                <h2><%- element.servicio %></h2>
+                <p><%- element.descripcion %></p>
+            </div>
             <% }) %>
-               
+
     </main>
 
     <%- include('templates/footer') %>

@@ -38,7 +38,7 @@ const getInstalacion = async (req, res) => {
   try {
     const instalaciones = await Instalacion.find();
     res.render("instalacion", {
-      titulo: "Estas en INSTALACION.",
+      titulo: "INSTALACIÓN",
       tituloURL: "Instalación",
       instalaciones,
     });
@@ -68,14 +68,14 @@ const getServicios = async (req, res) => {
 
 const getQuienesSomos = (req, res) => {
   res.render("quienessomos", {
-    titulo: "Estas en QUIENES SOMOS.",
+    titulo: "QUIENES SOMOS",
     tituloURL: "Quienes Somos",
   });
 };
 
 const getContacto = (req, res) => {
   res.render("contacto", {
-    titulo: "Estas en CONTACTO.",
+    titulo: "CONTACTO",
     tituloURL: "Contacto",
   });
 };

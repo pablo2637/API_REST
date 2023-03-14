@@ -2,9 +2,9 @@ const mongoose = require('mongoose');
 
 const conexion = async () => {
     try {
-        const respuesta = await mongoose.connect(process.env.URI_CONNECT);
+        const response = await mongoose.connect(process.env.URI_CONNECT);
         console.log('Connected to the database...');
-        return respuesta;
+        return response;
 
     } catch (error) {
         return {
@@ -15,6 +15,4 @@ const conexion = async () => {
     }
 }
 
-module.exports = {
-    conexion
-}
+module.exports = { conexion }

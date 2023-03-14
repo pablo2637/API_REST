@@ -3,45 +3,36 @@ const cors = require('cors');
 require('dotenv').config();
 const { conexion } = require('./helpers/dbConnect')
 
-//configurar servidor
-const app = express();
+const app = express();                              //Servidor
 const port = process.env.PORT;
 
-//Cors
-app.use(cors());
+app.use(cors());                                    //Cors
+app.use(express.static(__dirname + '/public'));     //Carpeta static
 
-//establece carpeta static
-app.use(express.static(__dirname + '/public'));
-
-//establecer template engine
-app.set('view engine', 'ejs');
+app.set('view engine', 'ejs');                      //Template engine
 app.set('views', __dirname + '/views');
 
-// parse application/x-www-form-urlencoded
-app.use(express.urlencoded({ extended: false }))
-// parse application/json
-app.use(express.json())
+app.use(express.urlencoded({ extended: false }))    // Parse application/x-www-form-urlencoded
+app.use(express.json())                             // Parse application/json
 
-//Conexión
-conexion();
+conexion();                                         //Conexión
 
-//rutas
-app.use('/', require('./routers/routerFront'));
-app.use('/api/v1', require('./routers/routerApiProductos'));
-app.use('/api/v1', require('./routers/routerApiServicios'));
-app.use('/api/v1', require('./routers/routerApiUsuarios'));
+app.use('/', require('./routers/routerFront'));     //Rutas
+app.use('/api/v1/productos', require('./routers/routerApiProductos'));
+app.use('/api/v1/servicios', require('./routers/routerApiServicios'));
+app.use('/api/v1/usuarios', require('./routers/routerApiUsuarios'));
+app.use('/api/v1/instalaciones', require('./routers/routerApiInstalaciones'));
 
 //404
-app.use((req, res, next) => {
+app.use((err, req, res, next) => {
+    console.error(err.stack);
     res.status(404).render('404', {
         tituloURL: '404 - Página no encontrada',
         error: '404',
         msg: 'Página no encontrada.'
     })
-
 })
+
 
 //Listener
-app.listen(port, () => {
-    console.log(`Server listening on port ${port}...`);
-})
+app.listen(port, () => console.log(`Server listening on port ${port}...`))

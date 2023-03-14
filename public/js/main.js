@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const spnID = document.querySelector('#spnID');
     const labelTipoDash = document.querySelector('#labelTipoDash');
     const divMenu = document.querySelector('#divMenu');
+    const nav = document.querySelector('nav');
     const imgFormDash = document.querySelector('#imgFormDash');
     const spnFechaAlta = document.querySelector('#spnFechaAlta');
     const divNavContenedor = document.querySelector('.divNavContenedor');
@@ -13,17 +14,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const tdTotalCart = document.querySelector('#totalCart');
 
     const arrayCarrito = JSON.parse(localStorage.getItem('arrayCarrito')) || [];
-    const URL_API_ID = 'http://localhost:3000/api/v1/productos/id/';
+    const URL_API_PROD = 'http://localhost:3000/api/v1/productos/id/';
+    const URL_API_INST = 'http://localhost:3000/api/v1/instalaciones/id/';
 
 
-    divMenu.addEventListener('click', ({ target }) => {
-        if (target.matches('i')) {
-            if (target.parentNode.id == 'btnMenu') {
+    nav.addEventListener('click', ev => {
+        if (ev.target.matches('div') && ev.ctrlKey && ev.altKey && ev.shiftKey) location.assign(location.origin + '/dashboard')
+
+        if (ev.target.matches('i')) {
+            if (ev.target.parentNode.id == 'btnMenu') {
                 divNavContenedor.classList.toggle('mostrarNav');
-            } else if (target.parentNode.id == 'btnCart') {
+            } else if (ev.target.parentNode.id == 'btnCart') {
                 divCart.classList.toggle('mostrarCart');
-            } else {
-                console.log(target);
+            } else if (ev.target.parentNode.id == 'btnCloseCart') {
+                divCart.classList.toggle('mostrarCart');
             }
         }
     })
@@ -50,37 +54,43 @@ document.addEventListener('DOMContentLoaded', () => {
             console.log(ev.target)
         } else if (ev.target.matches('i')) {
             if (ev.target.parentNode.classList.contains('btnAddToCart')) {
-                addToCart(ev.target.id);
+                addToCart(ev.target.id, 'prod');
+            } else if (ev.target.parentNode.classList.contains('btnAddToCartInst')) {
+                addToCart(ev.target.id, 'inst');
             }
         }
     })
 
-    const getDataToForm = element => {
-        let fechaAlta = '', tipo = '', descripcion = '', imagen = '', precio = 0, imgSrc = '';
+    const getDataToForm = el => {
+        let fechaAlta, tipo, descripcion, imagen, precio, imgSrc;
 
-        if (element.classList.contains('serviciosDash')) {
+        if (el.classList.contains('serviciosDash')) {
 
-            fechaAlta = element.cells[3].textContent;
-            tipo = element.cells[1].textContent;
-            descripcion = element.cells[2].textContent;
+            fechaAlta = el.cells[3].textContent;
+            tipo = el.cells[1].textContent;
+            descripcion = el.cells[2].textContent;
             imagen = '-';
             precio = 0;
             imgSrc = 'assets/noPic.png';
             labelTipoDash.textContent = 'Servicio:';
+            divFormDash[2].disabled = true;
+            divFormDash[3].disabled = true;
 
-        } else if (element.classList.contains('productosDash')) {
+        } else if (el.classList.contains('productosDash')) {
 
-            fechaAlta = element.cells[5].textContent;
-            tipo = element.cells[2].textContent;
-            descripcion = element.cells[3].textContent;
-            imagen = element.cells[1].firstChild.src;
-            precio = parseFloat(element.cells[4].textContent);
-            imgSrc = element.cells[1].firstChild.src;
+            fechaAlta = el.cells[5].textContent;
+            tipo = el.cells[2].textContent;
+            descripcion = el.cells[3].textContent;
+            imagen = el.cells[1].firstChild.src;
+            precio = parseFloat(el.cells[4].textContent);
+            imgSrc = el.cells[1].firstChild.src;
             labelTipoDash.textContent = 'Tipo:';
+            divFormDash[2].disabled = false;
+            divFormDash[3].disabled = false;
 
         }
 
-        spnID.textContent = element.cells[0].textContent;
+        spnID.textContent = el.cells[0].textContent;
         spnFechaAlta.textContent = fechaAlta;
         divFormDash[0].value = tipo;
         divFormDash[1].value = descripcion;
@@ -95,13 +105,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const getLocal = () => JSON.parse(localStorage.getItem('arrayCarrito')) || [];
 
-
     const fetchData = async (data) => {
         try {
             let url;
             switch (data.tipo) {
-                case 'id':
-                    url = URL_API_ID + data.id;
+                case 'prod':
+                    url = URL_API_PROD + data.id;
+                    break;
+                case 'inst':
+                    url = URL_API_INST + data.id;
                     break;
             }
 
@@ -110,13 +122,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 const response = await peticion.json();
                 return {
                     ok: true,
-                    resp: response.producto
+                    resp: response
                 }
-            } else {
-                console.log(error);
-                throw error;
+            } else return {
+                ok: false,
+                resp: peticion
             }
-
         } catch (error) {
             return {
                 ok: false,
@@ -172,25 +183,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
     }
 
-    const addToCart = async (id) => {
-        const { ok, resp: prod, error } = await fetchData({ tipo: 'id', id })
+    const addToCart = async (id, tipo) => {
+        const { ok, resp } = await fetchData({ tipo, id })
         if (ok) {
             const indProd = arrayCarrito.findIndex(item => item.id == id);
+            let producto;
+            
+            if (tipo == 'prod') producto = resp.producto;
+            else if (tipo == 'inst') producto = resp.data;
 
             if (indProd != -1) arrayCarrito[indProd].cantidad += 1;
-            else {
-                arrayCarrito.push({
-                    id: prod._id,
-                    cantidad: 1,
-                    imgSrc: prod.imagen,
-                    descripcion: prod.descripcion,
-                    tipo: prod.tipo,
-                    precio: prod.precio
-                })
-            }
+            else arrayCarrito.push({
+                id: producto._id,
+                cantidad: 1,
+                imgSrc: producto.imagen || 'assets/noPic.png',
+                descripcion: producto.descripcion,
+                tipo: producto.tipo,
+                precio: producto.precio
+            })
+
             setLocal();
             paintCart();
-        } else console.log('error addToCart', error)
+        } else console.log('Error addToCart', resp)
     }
 
     const init = () => {

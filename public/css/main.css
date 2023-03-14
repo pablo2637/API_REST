@@ -40,7 +40,6 @@ main h1 {
   text-shadow: 0 0 5px rgb(65, 73, 50);
 }
 
-
 /* Barra de Navegación *************************************** */
 
 .ocultar {
@@ -232,36 +231,6 @@ main h1 {
 }
 
 
-
-/* Instalación ************************************************ */
-.instalacion {
-  width: 90%;
-  margin: 20px auto;
-  background-color: rgba(0, 0, 0, 0.116);
-  box-shadow: 1px 1px 3px black;
-  padding: 10px;
-}
-
-.instalacion p:first-of-type span {
-  font-size: 0.9em;
-  font-weight: bold;
-}
-
-.instalacion p:not(:first-of-type) span {
-  color: rgb(3, 139, 3);
-  font-weight: bold;
-}
-
-.instalacion p:last-of-type span {
-  color: rgb(9, 120, 148);
-  font-weight: bold;
-}
-
-em {
-  font-size: 0.7em;
-}
-
-
 /* Table Productos **************************************** */
 .divTable {
   overflow-x: auto;
@@ -317,10 +286,9 @@ em {
 }
 
 .divTable tbody tr:hover {
-  color: rgb(238, 2, 2);
   font-weight: bold;
-  text-shadow: 1px 1px 15px rgb(114, 5, 5);
-  cursor: pointer;
+  text-shadow: 1px 1px 20px rgb(0, 0, 0);
+  cursor: default;
 }
 
 .divTable td {
@@ -389,6 +357,7 @@ footer a:hover {
 }
 
 /* ADMIN ******************************************************* */
+
 #divFormulario {
   width: 90%;
   margin: 10px auto;
@@ -527,4 +496,84 @@ footer a:hover {
 #divTablaServicios tr:hover {
   cursor: pointer;
   color: red;
+}
+
+/* Servicios ************************************************** */
+
+.divServicios {
+  width: 95%;
+  background-color: rgb(110, 124, 85);
+  border-radius: 10px;
+  border: 3px solid rgb(2, 85, 20);
+  box-shadow: 0 0 10px 1px rgb(0, 0, 0);
+  padding: 15px;
+  margin: 10px auto 20px;
+}
+
+.divServicios h2 {
+  color: rgb(47, 202, 60);
+  text-shadow: 0 0 10px rgb(0, 0, 0);
+}
+
+.divServicios p {
+  color: white;
+  padding: 5px;
+}
+
+
+/* Instalación ************************************************ */
+
+.instalacion {
+  width: 95%;
+  background-color: rgb(110, 124, 85);
+  border-radius: 10px;
+  border: 3px solid rgb(2, 85, 20);
+  box-shadow: 0 0 10px 1px rgb(0, 0, 0);
+  padding: 15px;
+  margin: 10px auto 20px;
+}
+
+.instalacion h2 {
+  color: rgb(47, 202, 60);
+  text-shadow: 0 0 10px rgb(0, 0, 0);
+  margin-bottom: 10px;
+}
+
+.instalacion p {
+  color: white;
+  padding: 5px;
+}
+
+.btnAddToCartInst {
+  font-size: 1.5em;
+  color: rgb(9, 76, 153);
+  padding: 5px;
+  float: right;
+  background-color: white;
+  box-shadow: 0 0 3px 1px black;
+  border-radius: 5px;
+  border: none;
+}
+
+.btnAddToCartInst:hover {
+  background-color: rgb(115, 255, 0);
+  box-shadow: 0 0 0 0;
+  color: rgb(26, 105, 2);
+  cursor: pointer;
+}
+
+.instalacion p:first-of-type span {
+  font-size: 0.9em;
+  font-weight: bold;
+  color:rgb(0, 0, 0);
+}
+
+.instalacion p:not(:first-of-type) span {
+  color: rgb(1, 66, 75);
+  font-weight: bold;
+}
+
+.instalacion p:last-of-type span {
+  color: rgb(24, 223, 6);
+  font-weight: bold;
 }

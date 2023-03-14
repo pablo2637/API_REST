@@ -7,10 +7,8 @@ const InstalacionSchema = new Schema({
     required: true,
     trim: true,
   },
-  costo: Number,
+  precio: Number,
   dias: Number,
-  demanda: Boolean,
-  img: String,
 });
 
 module.exports = model("Instalacion", InstalacionSchema);

@@ -14,16 +14,16 @@ const {
     deleteProducto } = require('../controllers/apiControllersProductos')
 
 //Todos
-router.get('/productos/', getProductos);
+router.get('/', getProductos);
 
 //Todos x Categoria
-router.get('/productos/categoria/:categoria', getProductosCategoria);
+router.get('/categoria/:categoria', getProductosCategoria);
 
 //Uno
-router.get('/productos/id/:id', getProducto);
+router.get('/id/:id', getProducto);
 
 //Crear
-router.post('/productos/', [
+router.post('/', [
     check('tipo', 'El tipo es obligatorio.').not().isEmpty().trim(),
     check('descripcion', 'La descripción es obligatoria').not().isEmpty().trim(),
     check('imagen', 'La imagen es obligatoria').not().isEmpty().trim(),
@@ -32,7 +32,7 @@ router.post('/productos/', [
     postProducto);
 
 //Modificar
-router.put('/productos/id/:id', [
+router.put('/id/:id', [
     check('tipo', 'El tipo es obligatorio.').not().isEmpty().trim(),
     check('descripcion', 'La descripción es obligatoria').not().isEmpty().trim(),
     check('imagen', 'La imagen es obligatoria').not().isEmpty().trim(),
@@ -44,6 +44,6 @@ router.put('/productos/id/:id', [
 router.get('/scrap', scrapAndPostProductos);
 
 //Borrar
-router.delete('/productos/id/:id', deleteProducto);
+router.delete('/id/:id', deleteProducto);
 
 module.exports = router;

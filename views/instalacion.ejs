@@ -2,34 +2,25 @@
 
   <main>
     <h1><%- titulo %></h1>
-  </main>
 
-  <% instalaciones.forEach(inst=> { %>
-    <div class="instalacion">
-      <button>Seleccionar</button>
+    <% instalaciones.forEach(inst=> { %>
+      <div class="instalacion">
 
-      <h2>
-        <%= inst.tipo %>
-      </h2>
-      <div>
-        <% if (inst.img) { %>
-          <img src="<%= inst.img %>" alt="" />
-          <% } %>
+        <div class="divBtnInst">
+          <button class="btnAddToCartInst"><i id="<%- inst._id %>" class="fa-solid fa-cart-plus"></i></button>
+        </div>
+
+        <div class="divInfoInst">
+          <h2><%- inst.tipo %></h2>
+
+          <p>Descripción: <span><%- inst.descripcion %></span></p>
+          <p>Precio: <span><%- inst.precio %>€</span></p>
+          <p>Tiempo de ejecución: <span><%- inst.dias %> dias.</span></p>
+
+        </div>
+
       </div>
+      <% }) %>
 
-      <p>Descripción: <span>
-          <%= inst.descripcion %>
-        </span></p>
-      <p>Precio: <em>desde</em> <span>
-          <%= inst.costo %>€
-        </span></p>
-      <p>Tiempo de ejecución: <span>
-          <%= inst.dias %> dias.
-        </span></p>
-
-      <% if (inst.demanda) { %>
-        <h3>(Alta demanda)</h3>
-        <% } %>
-    </div>
-    <% }) %>
-      <%- include('templates/footer') %>
+  </main>
+  <%- include('templates/footer') %>

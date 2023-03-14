@@ -11,16 +11,19 @@ const getServicios = async (req, res) => {
             total = servicios.length;
             servicios.splice(limite - 1, servicios.length - limite);
         }
-        if (servicios) {
-            const total_servicios = total > 0 ? total : servicios.length;
-            return res.status(200).json({
-                ok: true,
-                msg: 'getServicios: recuperando todos los servicios.',
-                total_servicios,
-                limite,
-                data: servicios
-            })
-        }
+        if (!servicios) return res.status(400).json({
+            ok: false,
+            msg: 'getServicios: no hay servicios en la bbdd.'
+        })
+
+        const total_servicios = total > 0 ? total : servicios.length;
+        return res.status(200).json({
+            ok: true,
+            msg: 'getServicios: recuperando todos los servicios.',
+            total_servicios,
+            limite,
+            data: servicios
+        })
 
     } catch (error) {
         return res.status(404).json({
@@ -35,14 +38,15 @@ const getServicio = async ({ params }, res) => {
     try {
         console.log('get request: id ', params.id);
         const servicio = await Servicio.findById(params.id);
-        if (servicio) return res.status(200).json({
+        if (!servicio) return res.status(400).json({
+            ok: false,
+            msg: 'getServicio: no existe ningún servicio con el ObjectId(' + params.id + ')'
+        })
+
+        return res.status(200).json({
             ok: true,
             msg: 'getServicio: se ha encontrado el servicio.',
             data: servicio
-        })
-        else return res.status(404).json({
-            ok: false,
-            msg: 'getServicio: no existe ningún servicio con el ObjectId(' + params.id + ')'
         })
 
     } catch (error) {
@@ -83,17 +87,18 @@ const putServicio = async ({ body, params }, res) => {
 
         const response = await Servicio.findByIdAndUpdate(params.id,
             { servicio, descripcion }, { new: true });
-        if (response) {
-            console.log('response: ', response)
-            return res.status(200).json({
-                ok: true,
-                msg: 'putServicio: Servicio actualizado con exito.',
-                response
-            })
-        } else return res.status(404).json({
+        if (!response) return res.status(400).json({
             ok: false,
             msg: 'putServicio: no existe ningún servicio con el ObjectId(' + params.id + ')'
         })
+
+        console.log('response: ', response)
+        return res.status(200).json({
+            ok: true,
+            msg: 'putServicio: Servicio actualizado con exito.',
+            response
+        })
+
     } catch (error) {
         return res.status(500).json({
             ok: false,
@@ -107,15 +112,17 @@ const deleteServicio = async ({ params }, res) => {
     try {
         console.log('delete request: id ', params.id);
         const response = await Servicio.findByIdAndDelete(params.id);
-        if (response) return res.status(200).json({
+        if (!response) return res.status(400).json({
+            ok: false,
+            msg: 'deleteServicio: no existe ningún servicio con el ObjectId(' + params.id + ')'
+        })
+
+        return res.status(200).json({
             ok: true,
             msg: 'deleteServicio: se ha borrado el servicio.',
             response
         })
-        else return res.status(404).json({
-            ok: false,
-            msg: 'deleteServicio: no existe ningún servicio con el ObjectId(' + params.id + ')'
-        })
+
     } catch (error) {
         return res.status(500).json({
             ok: false,
