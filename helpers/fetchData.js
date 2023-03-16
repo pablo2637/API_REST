@@ -21,6 +21,8 @@ const fetchData = (tipo, req) => {
             }
             break;
 
+            
+
         case 'getServ':
             url = `${URL_BASE}/${URL_API}/${URL_SERV}/id/${id}`;
             break;
@@ -52,8 +54,37 @@ const fetchData = (tipo, req) => {
             options = { method: 'DELETE' }
             break;
 
+
+
+        case 'getProd':
+            url = `${URL_BASE}/${URL_API}/${URL_PROD}/id/${id}`;
+            break;
+
         case 'getProdAll':
             url = `${URL_BASE}/${URL_API}/${URL_PROD}`;
+            break;
+
+        case 'postProd':
+            url = `${URL_BASE}/${URL_API}/${URL_PROD}`;
+            options = {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body
+            }
+            break;
+
+        case 'putProd':
+            url = `${URL_BASE}/${URL_API}/${URL_PROD}/id/${id}`;
+            options = {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body
+            }
+            break;
+
+        case 'dltProd':
+            url = `${URL_BASE}/${URL_API}/${URL_PROD}/id/${id}`;
+            options = { method: 'DELETE' }
             break;
     }
     return { url, options }

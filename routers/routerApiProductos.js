@@ -25,8 +25,7 @@ router.get('/id/:id', getProducto);
 //Crear
 router.post('/', [
     check('tipo', 'El tipo es obligatorio.').not().isEmpty().trim(),
-    check('descripcion', 'La descripción es obligatoria').not().isEmpty().trim(),
-    check('imagen', 'La imagen es obligatoria').not().isEmpty().trim(),
+    check('descripcion', 'La descripción es obligatoria').not().isEmpty().trim(),    
     check('precio', 'El precio es obligatorio').not().isEmpty().isNumeric(),
     validateInputs],
     postProducto);
@@ -34,8 +33,7 @@ router.post('/', [
 //Modificar
 router.put('/id/:id', [
     check('tipo', 'El tipo es obligatorio.').not().isEmpty().trim(),
-    check('descripcion', 'La descripción es obligatoria').not().isEmpty().trim(),
-    check('imagen', 'La imagen es obligatoria').not().isEmpty().trim(),
+    check('descripcion', 'La descripción es obligatoria').not().isEmpty().trim(),    
     check('precio', 'El precio es obligatorio').not().isEmpty().isNumeric(),
     validateInputs],
     putProducto);

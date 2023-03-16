@@ -8,12 +8,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const tbodyCart = document.querySelector('#divCart tbody');
     const tdTotalCart = document.querySelector('#totalCart');
 
-    const divFormDash = document.querySelector('#divFormulario form');    
-    const imgFormDash = document.querySelector('#imgFormDash');
-    const labelTipoDash = document.querySelector('#labelTipoDash');    
-    const spnID = document.querySelector('#spnID');
-    const spnFechaAlta = document.querySelector('#spnFechaAlta');
-
     const arrayCarrito = JSON.parse(localStorage.getItem('arrayCarrito')) || [];
     const URL_API_PROD = 'http://localhost:3000/api/v1/productos/id/';
     const URL_API_INST = 'http://localhost:3000/api/v1/instalaciones/id/';
@@ -35,14 +29,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     main.addEventListener('click', ev => {
         ev.preventDefault();
-        // console.log(ev.target)
-
-        if (ev.target.id == 'btnCancelarDash') {
-            spnID.textContent = '';
-            spnFechaAlta.textContent = '';
-            imgFormDash.src = 'assets/noPic.png';
-            divFormDash.reset();
-        }
 
         if (ev.target.parentNode.matches('tr') && ev.target.baseURI.includes('dashboard')) {
             getDataToForm(ev.target.parentNode);
@@ -52,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         if (ev.target.matches('button')) {
-            console.log(ev.target)
+            // console.log(ev.target)
         } else if (ev.target.matches('i')) {
             if (ev.target.parentNode.classList.contains('btnAddToCart')) {
                 addToCart(ev.target.id, 'prod');
@@ -62,51 +48,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     })
 
-    const getDataToForm = el => {
-        let fechaAlta, tipo, descripcion, imagen, precio, imgSrc;
-
-        if (el.classList.contains('serviciosDash')) {
-
-            fechaAlta = el.cells[3].textContent;
-            tipo = el.cells[1].textContent;
-            descripcion = el.cells[2].textContent;
-            imagen = '-';
-            precio = 0;
-            imgSrc = 'assets/noPic.png';
-            labelTipoDash.textContent = 'Servicio:';
-            divFormDash[2].disabled = true;
-            divFormDash[3].disabled = true;
-
-        } else if (el.classList.contains('productosDash')) {
-
-            fechaAlta = el.cells[5].textContent;
-            tipo = el.cells[2].textContent;
-            descripcion = el.cells[3].textContent;
-            imagen = el.cells[1].firstChild.src;
-            precio = parseFloat(el.cells[4].textContent);
-            imgSrc = el.cells[1].firstChild.src;
-            labelTipoDash.textContent = 'Tipo:';
-            divFormDash[2].disabled = false;
-            divFormDash[3].disabled = false;
-
-        }
-
-        spnID.textContent = el.cells[0].textContent;
-        spnFechaAlta.textContent = fechaAlta;
-        divFormDash[0].value = tipo;
-        divFormDash[1].value = descripcion;
-        divFormDash[2].value = imagen;
-        divFormDash[3].value = precio;
-        imgFormDash.src = imgSrc;
-
-        divNavContenedor.scrollIntoView({ behavior: "smooth" });
-    }
-
+    
     const setLocal = () => localStorage.setItem('arrayCarrito', JSON.stringify(arrayCarrito));
 
     const getLocal = () => JSON.parse(localStorage.getItem('arrayCarrito')) || [];
 
-    const fetchData = async (data) => {
+    const fetchData = async (data) => {        
         try {
             let url;
             switch (data.tipo) {
@@ -118,7 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     break;
             }
 
-            const peticion = await fetch(url);
+            const peticion = await fetch(url);            
             if (peticion.ok) {
                 const response = await peticion.json();
                 return {
@@ -137,7 +84,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     }
-
 
     const paintCart = () => {
         const fragment = document.createDocumentFragment();
@@ -186,7 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const addToCart = async (id, tipo) => {
         const { ok, resp } = await fetchData({ tipo, id })
-        if (ok) {
+        if (ok) {            
             const indProd = arrayCarrito.findIndex(item => item.id == id);
             let producto;
             

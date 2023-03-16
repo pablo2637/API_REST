@@ -382,12 +382,12 @@ footer a:hover {
   margin: 5px;
   padding: 5px 0;
   text-indent: 5px;
-  font-size: 1em;  
-  color:darkblue;
+  font-size: 1em;
+  color: darkblue;
 }
 
 #divUser form label {
-  text-align: right;  
+  text-align: right;
 }
 
 #btnSubmitUser {
@@ -399,12 +399,12 @@ footer a:hover {
   box-shadow: 0 0 3px yellowgreen;
   cursor: pointer;
   font-weight: bold;
-  justify-self: center;  
+  justify-self: center;
 }
 
 #pErrorUser {
   text-align: center;
-  color:red;
+  color: red;
   font-size: 1.2em;
 }
 
@@ -492,7 +492,8 @@ footer a:hover {
   font-weight: bold;
 }
 
-#servicio {
+#servicio,
+#tipo {
   width: 100%;
   padding: 5px 3px;
 }
@@ -502,12 +503,12 @@ footer a:hover {
   padding: 5px 3px;
 }
 
-#txtImg {
+#imagen {
   width: 100%;
   padding: 5px 3px;
 }
 
-#numPrecio {
+#precio {
   width: 70px;
   padding: 3px;
 }
@@ -628,8 +629,13 @@ footer a:hover {
 
 #divTablaProductos tr:hover,
 #divTablaServicios tr:hover {
-  cursor: pointer;
+  cursor:default;
   color: red;
+}
+
+#divTablaServicios td:nth-child(4) {
+  width: 100px;
+
 }
 
 /* Servicios ************************************************** */
@@ -727,7 +733,7 @@ footer a:hover {
 }
 
 #divIndex p {
-  position: fixed;
+  position: absolute;
   font-size: 4em;
   font-weight: bold;
   justify-self: center;

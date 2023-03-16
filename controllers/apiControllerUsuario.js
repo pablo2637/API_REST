@@ -6,8 +6,6 @@ const { generateJwt } = require('../helpers/jwt')
 //Login usuario
 const postUserLogin = async ({ body }, res) => {
     try {
-        console.log('Login user post request', body);
-
         const usuario = await Usuario.findOne({ "email": body.email })
         if (!usuario) return res.status(403).json({
             ok: false,
@@ -39,8 +37,6 @@ const postUserLogin = async ({ body }, res) => {
 //Nuevo usuario
 const postNewUser = async ({ body }, res) => {
     try {
-        console.log('New user post request: ', body);
-
         const yaExiste = await Usuario.findOne({ "email": body.email })
         if (yaExiste) return res.status(403).json({
             ok: false,

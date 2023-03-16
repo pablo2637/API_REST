@@ -2,9 +2,10 @@ const Servicio = require("../models/servicioModel");
 const Instalacion = require("../models/instalacionModel");
 const Producto = require("../models/productoModel");
 
-const rutaBase = 'http://localhost:3000/'
+const rutaBase = `http://localhost:${process.env.PORT}/`;
 
 const getIndex = (req, res) => {
+  req.app.locals = '';
   res.render("index", {
     titulo: "INDEX",
     tituloURL: "Index",
@@ -12,6 +13,7 @@ const getIndex = (req, res) => {
 };
 
 const getProductos = async (req, res) => {
+  req.app.locals = '';
   try {
     const piscinas = await Producto.find({ "tipo": "piscinas" });
     const barbacoas = await Producto.find({ "tipo": "barbacoas" });
@@ -37,6 +39,7 @@ const getProductos = async (req, res) => {
 };
 
 const getInstalacion = async (req, res) => {
+  req.app.locals = '';
   try {
     const instalaciones = await Instalacion.find();
     res.render("instalacion", {
@@ -53,6 +56,7 @@ const getInstalacion = async (req, res) => {
 };
 
 const getServicios = async (req, res) => {
+  req.app.locals = '';
   try {
     const servicios = await Servicio.find();
     res.render("servicios", {
@@ -69,6 +73,7 @@ const getServicios = async (req, res) => {
 };
 
 const getQuienesSomos = (req, res) => {
+  req.app.locals = '';
   res.render("quienessomos", {
     titulo: "QUIENES SOMOS",
     tituloURL: "Quienes Somos",
@@ -76,6 +81,7 @@ const getQuienesSomos = (req, res) => {
 };
 
 const getContacto = (req, res) => {
+  req.app.locals = '';
   res.render("contacto", {
     titulo: "CONTACTO",
     tituloURL: "Contacto",
@@ -84,9 +90,9 @@ const getContacto = (req, res) => {
 
 const getAdmin = (req, res) => {
   res.render("admin/admin", {
-      ok: false,
-      tituloURL: 'Administrador',
-      rutaBase
+    ok: false,
+    tituloURL: 'Administrador',
+    rutaBase
   });
 }
 

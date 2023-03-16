@@ -5,9 +5,9 @@
             <form action="/dashboard/checkUser" method="POST">
                 <label for="email">Usuario:</label>
                 <% if (!tituloURL.includes('Error')) { %>                    
-                    <input type="email" name="email" id="email" placeholder="email..." required="true" autocomplete="off">
+                    <input type="text" name="email" id="email" placeholder="email..." required="true" autocomplete="off">
                 <% } else { %>
-                    <input type="email" name="email" id="email" placeholder="email..." required="true" autocomplete="off" value="<%- email  %>">
+                    <input type="text" name="email" id="email" placeholder="email..." required="true" autocomplete="off" value="<%- email  %>">
                 <% } %>
                 <label for="password">Contraseña:</label>
                 <input type="password" name="password" id="password" required="true" autocomplete="off">
