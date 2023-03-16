@@ -1,0 +1,25 @@
+<%- include( 'templates/header' ,{rutaBase, tituloURL} ) %>
+
+    <main>
+        <div id="divUser">
+            <form action="/dashboard/checkUser" method="POST">
+                <label for="email">Usuario:</label>
+                <% if (!tituloURL.includes('Error')) { %>                    
+                    <input type="email" name="email" id="email" placeholder="email..." required="true" autocomplete="off">
+                <% } else { %>
+                    <input type="email" name="email" id="email" placeholder="email..." required="true" autocomplete="off" value="<%- email  %>">
+                <% } %>
+                <label for="password">Contraseña:</label>
+                <input type="password" name="password" id="password" required="true" autocomplete="off">
+
+                <input id="btnSubmitUser" type="submit" value="Validar">
+            </form>
+        </div>
+        <% if (tituloURL.includes('Error')) { %>
+            <p id="pErrorUser"><%- error %></p>  
+         <% } else { %>
+            <p id="pErrorUser"></p>  
+        <% } %>        
+    </main>
+
+    <%- include('templates/footer') %>

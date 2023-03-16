@@ -6,7 +6,6 @@ const getProductos = async (req, res) => {
         const limite = parseInt(req.query.limit) || 0;
         let total = 0;
 
-        console.log('get request: all - limit:', limite);
         const productos = await Producto.find();
         if (limite > 0 && productos) {
             total = productos.length;
@@ -44,7 +43,6 @@ const getProductosCategoria = async ({ params, query }, res) => {
         const categoria = params.categoria;
         const limite = parseInt(query.limit) || 0;
 
-        console.log('get request: category', categoria, '- limit', limite);
         const productos = await Producto.find({ "tipo": categoria });
         if (limite > 0 && productos) {
             total = productos.length;
@@ -77,7 +75,6 @@ const getProductosCategoria = async ({ params, query }, res) => {
 
 const scrapAndPostProductos = async (req, res) => {
     try {
-
         const piscinas = await searchWeb('https://www.bricodepot.es/jardin/piscina/piscinas', 'piscinas');
         const barbacoas = await searchWeb('https://www.bricodepot.es/jardin/mobiliario-y-sombreo/barbacoas?cat=3204', 'barbacoas');
         const mobiliario = await searchWeb('https://www.bricodepot.es/jardin/mobiliario-y-sombreo/muebles/conjuntos-mesas-sillas-jardin?', 'mobiliario');
@@ -101,7 +98,6 @@ const scrapAndPostProductos = async (req, res) => {
 
 const getProducto = async ({ params }, res) => {
     try {
-        console.log('get request: id ', params.id);
         const producto = await Producto.findById(params.id);
 
         if (!producto) return res.status(400).json({
@@ -126,9 +122,7 @@ const getProducto = async ({ params }, res) => {
 
 const postProducto = async (req, res) => {
     try {
-        console.log('post request: ', req.body);
         const response = await new Producto(req.body).save()
-        console.log('response: ', response);
         return res.status(201).json({
             ok: true,
             msg: 'postProductos: creado un nuevo producto.',
@@ -146,19 +140,15 @@ const postProducto = async (req, res) => {
 
 const putProducto = async ({ body, params }, res) => {
     try {
-        console.log('put request: id ', params.id);
-        console.log('body: ', body);
-
         const { tipo, descripcion, precio, imagen } = body;
-
-        const response = await Producto.findByIdAndUpdate(params.id,
+        const response = await Producto.findByIdAndUpdate(params.id,            
             { tipo, descripcion, precio, imagen }, { new: true });
+
         if (!response) return res.status(400).json({
             ok: false,
             msg: 'putProducto: no existe ningún producto con el ObjectId(' + params.id + ')'
         })
 
-        console.log('response: ', response)
         return res.status(200).json({
             ok: true,
             msg: 'putProducto: Producto actualizado con exito.',
@@ -176,7 +166,6 @@ const putProducto = async ({ body, params }, res) => {
 
 const deleteProducto = async ({ params }, res) => {
     try {
-        console.log('delete request: id ', params.id);
         const response = await Producto.findByIdAndDelete(params.id);
         if (!response) return res.status(400).json({
             ok: false,

@@ -5,7 +5,6 @@ const getServicios = async (req, res) => {
         const limite = parseInt(req.query.limit) || 0;
         let total = 0;
 
-        console.log('get request: all - limit:', limite);
         const servicios = await Servicio.find();
         if (limite > 0 && servicios) {
             total = servicios.length;
@@ -36,7 +35,6 @@ const getServicios = async (req, res) => {
 
 const getServicio = async ({ params }, res) => {
     try {
-        console.log('get request: id ', params.id);
         const servicio = await Servicio.findById(params.id);
         if (!servicio) return res.status(400).json({
             ok: false,
@@ -60,9 +58,7 @@ const getServicio = async ({ params }, res) => {
 
 const postServicio = async (req, res) => {
     try {
-        console.log('post request: ', req.body);
         const response = await new Servicio(req.body).save()
-        console.log('response: ', response);
         return res.status(201).json({
             ok: true,
             msg: 'postServicio: creado un nuevo servicio.',
@@ -80,19 +76,15 @@ const postServicio = async (req, res) => {
 
 const putServicio = async ({ body, params }, res) => {
     try {
-        console.log('put request: id ', params.id);
-        console.log('body: ', body);
-
         const { servicio, descripcion } = body;
-
         const response = await Servicio.findByIdAndUpdate(params.id,
             { servicio, descripcion }, { new: true });
+
         if (!response) return res.status(400).json({
             ok: false,
             msg: 'putServicio: no existe ningún servicio con el ObjectId(' + params.id + ')'
         })
 
-        console.log('response: ', response)
         return res.status(200).json({
             ok: true,
             msg: 'putServicio: Servicio actualizado con exito.',
@@ -110,7 +102,6 @@ const putServicio = async ({ body, params }, res) => {
 
 const deleteServicio = async ({ params }, res) => {
     try {
-        console.log('delete request: id ', params.id);
         const response = await Servicio.findByIdAndDelete(params.id);
         if (!response) return res.status(400).json({
             ok: false,

@@ -1,0 +1,16 @@
+
+
+    <%- include( 'templates/header' ,{rutaBase, tituloURL} ) %> 
+    
+    <main>
+        <% if (productos) { %>
+            <%- include('templates/tablaProductos', productos) %>
+        <% } %>
+
+        <% if (servicios) { %>
+            <%- include('templates/tablaServicios', servicios) %>
+        <% } %>
+    </main>
+
+    <%- include('templates/footer') %>
+

@@ -1,0 +1,37 @@
+<div id="divTablaProductos">
+    <h2>Productos: <%- productos.length %> </h2>
+    <a class="aDash" href="">Nuevo Producto <i class="fa-solid fa-plus"></i></a>
+    
+    <table>
+        <thead>
+            <tr>                
+                <th></th>
+                <th>TIPO</th>
+                <th>DESCRIPCIÓN</th>
+                <th>PRECIO</th>
+                <th>FECHA</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <% productos.forEach(item=> { %>
+                <tr class="productosDash">                
+                    <% if (item.imagen=='' ) { %>
+                        <td><img src="assets/nopic.png" alt=""></td>
+                        <% } else { %>
+                            <td><img src="<%- item.imagen %>" alt=""></td>
+                            <% } %>
+                                <td> <%- item.tipo %></td>
+                                <td> <%- item.descripcion %></td>
+                                <td> <%- item.precio %>€</td>
+                                <td> <%- item.fecha %></td>
+                                <td class="btnsTablaDash">
+                                    <a href=""><i class="fa-solid fa-pen-to-square"></i></a>
+                                    <a href=""><i class="fa-solid fa-trash-can"></i></a>                                    
+                                    <a href=""><i class="fa-solid fa-eye"></i></a>
+                                </td>
+                </tr>
+                <% }) %>
+        </tbody>
+    </table>
+</div>

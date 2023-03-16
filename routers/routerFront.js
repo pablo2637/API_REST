@@ -7,7 +7,7 @@ const { getIndex,
     getInstalacion,
     getQuienesSomos,
     getContacto,
-    showDashboard } = require('../controllers/frontControllers');
+    getAdmin } = require('../controllers/frontControllers');
 
 //Home
 router.get('/', getIndex);
@@ -24,10 +24,10 @@ router.get('/instalacion', getInstalacion);
 //Quienes Somos
 router.get('/quienessomos', getQuienesSomos);
 
-//Admin
-router.get('/dashboard', showDashboard)
-
 //Contacto
 router.get('/contacto', getContacto);
+
+//Admin
+router.get('/admin', getAdmin)
 
 module.exports = router;

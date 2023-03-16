@@ -1,17 +1,18 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     const main = document.querySelector('main');
-    const divFormDash = document.querySelector('#divFormulario form');
-    const spnID = document.querySelector('#spnID');
-    const labelTipoDash = document.querySelector('#labelTipoDash');
-    const divMenu = document.querySelector('#divMenu');
+
     const nav = document.querySelector('nav');
-    const imgFormDash = document.querySelector('#imgFormDash');
-    const spnFechaAlta = document.querySelector('#spnFechaAlta');
     const divNavContenedor = document.querySelector('.divNavContenedor');
     const divCart = document.querySelector('#divCart');
     const tbodyCart = document.querySelector('#divCart tbody');
     const tdTotalCart = document.querySelector('#totalCart');
+
+    const divFormDash = document.querySelector('#divFormulario form');    
+    const imgFormDash = document.querySelector('#imgFormDash');
+    const labelTipoDash = document.querySelector('#labelTipoDash');    
+    const spnID = document.querySelector('#spnID');
+    const spnFechaAlta = document.querySelector('#spnFechaAlta');
 
     const arrayCarrito = JSON.parse(localStorage.getItem('arrayCarrito')) || [];
     const URL_API_PROD = 'http://localhost:3000/api/v1/productos/id/';
@@ -19,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     nav.addEventListener('click', ev => {
-        if (ev.target.matches('div') && ev.ctrlKey && ev.altKey && ev.shiftKey) location.assign(location.origin + '/dashboard')
+        if (ev.target.matches('div') && ev.ctrlKey && ev.altKey && ev.shiftKey) location.assign(location.origin + '/admin')
 
         if (ev.target.matches('i')) {
             if (ev.target.parentNode.id == 'btnMenu') {

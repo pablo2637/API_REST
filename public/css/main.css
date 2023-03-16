@@ -144,7 +144,8 @@ main h1 {
 }
 
 #btnCloseCart {
-  float: right;
+  position: fixed;
+  right: 10px;
   color: red;
 }
 
@@ -155,7 +156,7 @@ main h1 {
 
 #divCart table {
   width: 98%;
-  margin: 5px 0;
+  margin: 15px 2px;
   border-collapse: collapse;
   table-layout: fixed;
   text-align: center;
@@ -358,6 +359,93 @@ footer a:hover {
 
 /* ADMIN ******************************************************* */
 
+#divUser {
+  width: 400px;
+  height: 250px;
+  border: 2px solid yellowgreen;
+  box-shadow: 0 0 5px 1px black;
+  margin: 15px auto;
+}
+
+#divUser form {
+  padding: 40px 20px;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  color: greenyellow;
+  display: grid;
+  grid-template-columns: 0.3fr 0.7fr;
+  align-items: center;
+}
+
+#divUser form input {
+  margin: 5px;
+  padding: 5px 0;
+  text-indent: 5px;
+  font-size: 1em;  
+  color:darkblue;
+}
+
+#divUser form label {
+  text-align: right;  
+}
+
+#btnSubmitUser {
+  grid-column: 1 / 3;
+  width: 150px;
+  border: none;
+  background-color: yellowgreen;
+  color: black;
+  box-shadow: 0 0 3px yellowgreen;
+  cursor: pointer;
+  font-weight: bold;
+  justify-self: center;  
+}
+
+#pErrorUser {
+  text-align: center;
+  color:red;
+  font-size: 1.2em;
+}
+
+#divMenuDash {
+  background-color: black;
+  display: flex;
+  justify-content: space-evenly;
+
+  height: 30px;
+}
+
+.divNavHijoDash {
+  display: flex;
+  text-align: center;
+}
+
+.divNavHijoDash a {
+  padding: 5px;
+  width: 100%;
+  height: 100%;
+  color: rgb(255, 255, 255);
+  text-align: center;
+  text-decoration: none;
+
+  transition: background-color 200ms ease-in;
+}
+
+.divNavHijoDash a:hover {
+  background-color: rgb(2, 92, 43);
+}
+
+.h1Dash {
+  text-indent: 10px;
+  text-align: right;
+  margin-top: 20px;
+  padding: 20px;
+  font-size: 2.5em;
+  color: rgb(105, 243, 190);
+  text-shadow: 0 0 5px rgb(65, 73, 50);
+}
+
 #divFormulario {
   width: 90%;
   margin: 10px auto;
@@ -377,6 +465,10 @@ footer a:hover {
   grid-column: 1 / 2;
   padding: 5px 10px;
   font-weight: bold;
+}
+
+#pError {
+  color: red;
 }
 
 #spnID,
@@ -400,13 +492,13 @@ footer a:hover {
   font-weight: bold;
 }
 
-#txtTipo {
-  width: 150px;
+#servicio {
+  width: 100%;
   padding: 5px 3px;
 }
 
-#txtDesc {
-  width: 400px;
+#descripcion {
+  width: 100%;
   padding: 5px 3px;
 }
 
@@ -443,36 +535,72 @@ footer a:hover {
 #btnSubmitDash,
 #btnModificarDash,
 #btnEliminarDash,
-#btnCancelarDash {
+.btnCancelarDash {
   width: 150px;
   padding: 8px;
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 47, 85);
   box-shadow: 1px 1px 3px 1px rgb(0, 0, 0);
   border-radius: 5px;
   cursor: pointer;
 }
 
+
+.btnCancelarDash {
+  text-decoration: none;
+  text-align: center;
+  font-size: 0.8em;
+}
+
+
 /* ADMIN TABLAS ************************************************* */
 
-#divTablaAdmin h2,
+#divTablaProductos h2,
 #divTablaServicios h2 {
+  margin-top: 30px;
+  float: left;
+  color: darkolivegreen;
+}
+
+#divTablaProductos .aDash,
+#divTablaServicios .aDash {
+  font-size: 1.2em;
+  float: right;
+  text-decoration: none;
+  border-radius: 5px;
+  background-color: rgb(21, 255, 0);
+  color: rgb(0, 0, 0);
+  padding: 5px;
   margin-top: 20px;
 }
 
-#divTablaAdmin,
+.btnsTablaDash {
+  justify-content: space-evenly;
+
+}
+
+.btnsTablaDash a {
+  text-decoration: none;
+  padding: 0 2px;
+  color: rgb(0, 65, 90);
+  font-size: 1.3em;
+}
+
+#divTablaProductos,
 #divTablaServicios {
   margin: 0 auto;
   width: 95%;
   font-size: 0.8em;
 }
 
-#divTablaAdmin table,
+#divTablaProductos table,
 #divTablaServicios table {
   width: 100%;
   border: 2px solid black;
   border-collapse: collapse;
 }
 
-#divTablaAdmin th,
+#divTablaProductos th,
 #divTablaServicios th {
   font-size: 1.3em;
   padding: 10px;
@@ -480,19 +608,25 @@ footer a:hover {
   color: white;
 }
 
-#divTablaAdmin img {
+#divTablaProductos td:nth-child(3),
+#divTablaServicios td:nth-child(2) {
+  text-align: left;
+}
+
+#divTablaProductos img {
   width: 40px;
   border: 1px black red;
 }
 
-#divTablaAdmin td,
+#divTablaProductos td,
 #divTablaServicios td {
+  text-align: center;
   padding: 5px;
   border: 1px dotted black;
   border-collapse: collapse;
 }
 
-#divTablaAdmin tr:hover,
+#divTablaProductos tr:hover,
 #divTablaServicios tr:hover {
   cursor: pointer;
   color: red;
@@ -565,7 +699,7 @@ footer a:hover {
 .instalacion p:first-of-type span {
   font-size: 0.9em;
   font-weight: bold;
-  color:rgb(0, 0, 0);
+  color: rgb(0, 0, 0);
 }
 
 .instalacion p:not(:first-of-type) span {
@@ -576,4 +710,31 @@ footer a:hover {
 .instalacion p:last-of-type span {
   color: rgb(24, 223, 6);
   font-weight: bold;
+}
+
+/* Index ********************************************* */
+
+#divIndex {
+  width: 95%;
+  margin: 0 auto;
+  display: grid;
+}
+
+#divIndex img {
+  width: 90vw;
+  margin: 0 auto;
+  position: static;
+}
+
+#divIndex p {
+  position: fixed;
+  font-size: 4em;
+  font-weight: bold;
+  justify-self: center;
+  align-self: center;
+  color: white;
+  border: 1px solid black;
+  box-shadow: 0 0 5px black;
+  text-shadow: 0 0 3px black;
+  background-color: rgba(0, 0, 0, 0.650);
 }

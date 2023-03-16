@@ -2,9 +2,11 @@ const Servicio = require("../models/servicioModel");
 const Instalacion = require("../models/instalacionModel");
 const Producto = require("../models/productoModel");
 
+const rutaBase = 'http://localhost:3000/'
+
 const getIndex = (req, res) => {
   res.render("index", {
-    titulo: "Estas en el INDEX.",
+    titulo: "INDEX",
     tituloURL: "Index",
   });
 };
@@ -80,27 +82,13 @@ const getContacto = (req, res) => {
   });
 };
 
-const showDashboard = async (req, res) => {
-  try {
-    const productos = await Producto.find();
-    const servicios = await Servicio.find();
-
-    if (productos && servicios) {
-      res.render("dashboard", {
-        titulo: "Menú de Administrador",
-        tituloURL: "dashboard",
-        productos, servicios
-      });
-    }
-
-  } catch (error) {
-    res.render("admin", {
+const getAdmin = (req, res) => {
+  res.render("admin/admin", {
       ok: false,
-      msg: "Error al traer los datos.",
-    });
-  }
-
-};
+      tituloURL: 'Administrador',
+      rutaBase
+  });
+}
 
 module.exports = {
   getIndex,
@@ -109,5 +97,5 @@ module.exports = {
   getInstalacion,
   getQuienesSomos,
   getContacto,
-  showDashboard
+  getAdmin
 };

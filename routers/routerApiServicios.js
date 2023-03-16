@@ -19,14 +19,14 @@ router.get('/id/:id', getServicio);
 
 //Crear
 router.post('/', [
-    check('servicio', 'El tipo es obligatorio.').not().isEmpty().trim(),
+    check('servicio', 'El servicio es obligatorio.').not().isEmpty().trim(),
     check('descripcion', 'La descripción es obligatoria').not().isEmpty().trim(),
     validateInputs],
     postServicio);
 
 //Modificar
 router.put('/id/:id', [
-    check('servicio', 'El tipo es obligatorio.').not().isEmpty().trim(),
+    check('servicio', 'El servicio es obligatorio.').not().isEmpty().trim(),
     check('descripcion', 'La descripción es obligatoria').not().isEmpty().trim(),
     validateInputs],
     putServicio);

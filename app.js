@@ -22,6 +22,7 @@ app.use('/api/v1/productos', require('./routers/routerApiProductos'));
 app.use('/api/v1/servicios', require('./routers/routerApiServicios'));
 app.use('/api/v1/usuarios', require('./routers/routerApiUsuarios'));
 app.use('/api/v1/instalaciones', require('./routers/routerApiInstalaciones'));
+app.use('/dashboard', require('./routers/routerAdmin'));
 
 //404
 app.use((err, req, res, next) => {

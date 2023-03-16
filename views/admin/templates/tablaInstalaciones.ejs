@@ -1,0 +1,33 @@
+<div id="divTablaServicios">
+    <h2>Servicios: <%- instalaciones.length %> </h2>
+    <a href="">Nueva Instalación <i class="fa-solid fa-plus"></i></a>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>TIPO</th>
+                <th>DESCRIPCIÓN</th>
+                <th>DIAS</th>
+                <th>PRECIO</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <% instalaciones.forEach(inst=> { %>
+                <tr class="serviciosDash">
+                    <td> <%- inst._id %></td>
+                    <td> <%- inst.tipo %></td>
+                    <td> <%- inst.descripcion %></td>
+                    <td> <%- inst.dias %></td>
+                    <td> <%- inst.precio %></td>
+                    <td>
+                        <a href=""><i class="fa-solid fa-pen-to-square"></i></a>
+                        <a href=""><i class="fa-solid fa-trash-can"></i></i></a>
+                        <a href=""><i class="fa-solid fa-eye"></i></a>
+                    </td>
+                </tr>
+                <% }) %>
+        </tbody>
+    </table>
+</div>
