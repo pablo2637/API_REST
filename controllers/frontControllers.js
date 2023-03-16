@@ -2,7 +2,8 @@ const Servicio = require("../models/servicioModel");
 const Instalacion = require("../models/instalacionModel");
 const Producto = require("../models/productoModel");
 
-const rutaBase = `http://localhost:${process.env.PORT}/`;
+// const rutaBase = `http://localhost:${process.env.PORT}/`;
+const rutaBase = 'https://apirest-h60c.onrender.com/';
 
 const getIndex = (req, res) => {
   req.app.locals = '';

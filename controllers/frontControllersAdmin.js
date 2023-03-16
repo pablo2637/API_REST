@@ -1,4 +1,5 @@
-const rutaBase = `http://localhost:${process.env.PORT}/`;
+// const rutaBase = `http://localhost:${process.env.PORT}/`;
+const rutaBase = 'https://apirest-h60c.onrender.com/';
 
 const { fetchData } = require('../helpers/fetchData')
 const { generateJwt } = require('../helpers/jwt');
@@ -251,7 +252,7 @@ const postProducto = async (req, res) => {
                 tipo: req.body.tipo
             }
             if (producto.tipo == '') error = response.errors.tipo.msg
-            else if (producto.descripcion == '') error = response.errors.descripcion.msg            
+            else if (producto.descripcion == '') error = response.errors.descripcion.msg
             else if (producto.precio == '') error = response.errors.precio.msg
 
             res.render('admin/formProducto', {
