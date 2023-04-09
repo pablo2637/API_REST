@@ -1,13 +1,15 @@
 <%- include( 'templates/header' ,{tituloURL} ) %>
 
     <main>
+
         <h1><%- titulo %></h1>
 
         <% productos.forEach(el=> { %>
-            <%- include( 'templates/tablaProductos' ,{ producto: el.producto, tituloTabla:el.tituloTabla,
-                tituloFooter:el.tituloFooter } )%>
 
-                <% }) %>
+            <%- include( 'templates/tablaProductos' ,{ producto: el.producto, tituloTabla:el.tituloTabla, tituloFooter:el.tituloFooter } )%>
+
+        <% }) %>
+
     </main>
 
     <%- include('templates/footer') %>

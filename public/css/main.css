@@ -537,6 +537,7 @@ footer a:hover {
 #btnModificarDash,
 #btnEliminarDash,
 .btnCancelarDash {
+  font-size: 1.2em;
   width: 150px;
   padding: 8px;
   background-color: rgb(255, 255, 255);
@@ -550,7 +551,15 @@ footer a:hover {
 .btnCancelarDash {
   text-decoration: none;
   text-align: center;
-  font-size: 0.8em;
+  padding: 12px;
+}
+
+#btnSubmitDash:hover,
+#btnModificarDash:hover,
+#btnEliminarDash:hover,
+.btnCancelarDash:hover {
+  background-color: darkslategray;
+  color:white;
 }
 
 
@@ -570,9 +579,16 @@ footer a:hover {
   text-decoration: none;
   border-radius: 5px;
   background-color: rgb(21, 255, 0);
+  box-shadow: 0 0 3px;
   color: rgb(0, 0, 0);
   padding: 5px;
   margin-top: 20px;
+}
+
+#divTablaProductos .aDash:hover,
+#divTablaServicios .aDash:hover {
+  color: rgb(21, 255, 0);
+  background-color: black;
 }
 
 .btnsTablaDash {
@@ -629,7 +645,7 @@ footer a:hover {
 
 #divTablaProductos tr:hover,
 #divTablaServicios tr:hover {
-  cursor:default;
+  cursor: default;
   color: red;
 }
 

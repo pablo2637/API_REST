@@ -1,25 +1,31 @@
-<%- include('templates/header',{ rutaBase, tituloURL }) %>
+<%- include('templates/headerNE',{  tituloURL }) %>
 <%- include('templates/nav') %>
 
+<main>
+
     <h1 class="h1Dash"><%- tituloURL %></h1>
+
     <div id="divFormulario">
+
         <% if (tituloURL.includes('Error')) { %>
-         <p id="pError"><%= error %></p>
+            <p id="pError"><%= error %></p>
         <% } %>
 
         <% if (tituloURL.includes('Modificar')) { %>
+
             <p>ID: <span id="spnID"><%- servicio._id %></span></p>
             <p>Fecha Alta: <span id="spnFechaAlta"><%- servicio.fecha %></span></p>
             
             <form action="/dashboard/servicios/updt/<%- servicio._id %>" method="post">               
+
                 <label for="servicio" id="labelTipoDash">Servicio:</label>                
                 <input type="text" name="servicio" id="servicio" value="<%- servicio.servicio %>">
     
                 <label for="descripcion">Descripción:</label>
                 <textarea name="descripcion" id="descripcion" cols="30" rows="10"><%- servicio.descripcion %></textarea>                               
 
-                <div id="btnsFormDash">                    
-                    <input type="submit" value="Modificar" id="btnSubmitDash">
+                <div id="btnsFormDash">                                        
+                    <button  id="btnSubmitDash" type="submit"><i class="fa-regular fa-floppy-disk"></i> Agregar</button>                
         
         <% } else { %>
 
@@ -27,7 +33,9 @@
             <p>Fecha Alta: <span id="spnFechaAlta">Ahora</span></p>   
 
             <form action="/dashboard/servicios/post/" method="post">
+
                 <% if (tituloURL.includes('Error')) { %>
+
                     <label for="servicio" id="labelTipoDash">Servicio:</label>
                     <input type="text" name="servicio" id="servicio" placeholder="Nombre del servicio" value="<%- servicio.servicio %>">
         
@@ -35,20 +43,26 @@
                     <textarea name="descripcion" id="descripcion" cols="30" rows="10" placeholder="Descripción del servicio..."><%- servicio.descripcion %></textarea>                              
 
                 <% } else { %>
+
                     <label for="servicio" id="labelTipoDash">Servicio:</label>
                     <input type="text" name="servicio" id="servicio" placeholder="Nombre del servicio">
         
                     <label for="descripcion">Descripción:</label>
                     <textarea name="descripcion" id="descripcion" cols="30" rows="10" placeholder="Descripción del servicio..."></textarea>                              
+
                 <% } %>            
                
-                <div id="btnsFormDash">                
-                    <input type="submit" value="Agregar" id="btnSubmitDash">
-        <% } %>
-                               
-                <a href="/dashboard" class="btnCancelarDash">Cancelar</a>
+                <div id="btnsFormDash">                                    
+                    <button  id="btnSubmitDash" type="submit"><i class="fa-regular fa-floppy-disk"></i> Agregar</button>                
+                
+        <% } %>                               
+                
+                <a href="/dashboard" class="btnCancelarDash"><i class="fa-solid fa-rotate-left"></i> Cancelar</a>
             </div>
         </form>
+
     </div>
 
-    <%- include('templates/footer') %>
+</main>
+
+    <%- include('templates/footerNE',{  tituloURL }) %>

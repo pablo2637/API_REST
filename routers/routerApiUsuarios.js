@@ -13,16 +13,16 @@ const {
 //Login
 router.post('/', [
     check('email', 'El email es obligatorio').trim().isEmail().normalizeEmail(),
-    check('password', 'La contraseña es obligatoria.').not().isEmpty().trim(),
+    check('password', 'La contraseña es obligatoria.').trim().not().isEmpty(),
     validateInputs
 ], postUserLogin);
 
 
 //Registro
 router.post('/new', [
-    check('nombre', 'El nombre es obligatorio.').not().isEmpty().trim(),
-    check('isAdmin', 'Debe especificar si el usuario es administrador.').not().isEmpty().isBoolean(),
-    check('password', 'La contraseña es obligatoria y debe tener entre 6 y 10 caracteres.').not().isEmpty().trim().isLength({ min: 6, max: 10 }),
+    check('nombre', 'El nombre es obligatorio.').trim().not().isEmpty(),
+    check('isAdmin', 'Debe especificar si el usuario es administrador.').isBoolean().not().isEmpty(),
+    check('password', 'La contraseña es obligatoria y debe tener entre 6 y 10 caracteres.').trim().isLength({ min: 6, max: 10 }).not().isEmpty(),
     check('email', 'El email es obligatorio, por favor, verifícalo.').trim().isEmail().normalizeEmail(),
     validateInputs
 ], postNewUser);

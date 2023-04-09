@@ -1,4 +1,9 @@
-    <script src="js/main.js"></script>
+    
+    <% if (tituloURL.includes('Nuevo')) { %>
+        <script src="../../js/main.js"></script>
+    <% } else { %>
+        <script src="../../../js/main.js"></script>
+    <% } %>  
     
     <footer>
         <p><a href="/">Jardines.com</a> - Teléfono: 943 486 321 / 676 315 894 - email: <a

@@ -1,9 +1,11 @@
 <%- include( 'templates/header' ,{tituloURL} ) %>
 
   <main>
+    
     <h1><%- titulo %></h1>
 
     <% instalaciones.forEach(inst=> { %>
+
       <div class="instalacion">
 
         <div class="divBtnInst">
@@ -11,6 +13,7 @@
         </div>
 
         <div class="divInfoInst">
+
           <h2><%- inst.tipo %></h2>
 
           <p>Descripción: <span><%- inst.descripcion %></span></p>
@@ -20,7 +23,9 @@
         </div>
 
       </div>
-      <% }) %>
+
+    <% }) %>
 
   </main>
+
   <%- include('templates/footer') %>

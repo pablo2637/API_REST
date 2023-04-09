@@ -1,8 +1,10 @@
 <div id="divTablaServicios">
+    
     <h2 id="h2Servicios">Servicios: <%- servicios.length %> </h2>
     <a class="aDash" href="/dashboard/servicios/new">Nuevo Servicio <i class="fa-solid fa-plus"></i></a>
 
     <table>
+
         <thead>
             <tr>
                 <th>SERVICIO</th>
@@ -11,6 +13,7 @@
                 <th></th>
             </tr>
         </thead>
+
         <tbody>
             <% servicios.forEach(serv=> { %>
                 <tr class="serviciosDash">
@@ -25,5 +28,7 @@
                 </tr>
                 <% }) %>
         </tbody>
+
     </table>
+
 </div>

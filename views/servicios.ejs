@@ -3,12 +3,15 @@
     <main>
 
         <h1><%- titulo %></h1>
+
         <% servicios.forEach(element=> { %>
+            
             <div class="divServicios">
                 <h2><%- element.servicio %></h2>
                 <p><%- element.descripcion %></p>
             </div>
-            <% }) %>
+
+        <% }) %>
 
     </main>
 

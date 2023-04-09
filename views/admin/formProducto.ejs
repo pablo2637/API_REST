@@ -1,47 +1,20 @@
-<%- include('templates/header',{ rutaBase, tituloURL }) %>
+<%- include('templates/headerNE',{  tituloURL }) %>
 <%- include('templates/nav') %>
 
-<div id="divFormulario">
-    <% if (tituloURL.includes('Error')) { %>
-        <p id="pError"><%= error %></p>
-    <% } %>
+<main>
+    <div id="divFormulario">
 
-    <% if (tituloURL.includes('Modificar')) { %>
+        <% if (tituloURL.includes('Error')) { %>
+            <p id="pError"><%= error %></p>
+        <% } %>
 
-        <p>ID: <span id="spnID"><%- producto._id %></span></p>
-        <p>Fecha Alta: <span id="spnFechaAlta"><%- producto.fecha %></span></p>
+        <% if (tituloURL.includes('Modificar')) { %>
 
-        <form action="/dashboard/productos/updt/<%- producto._id %>" method="post">
-            <label for="tipo" id="labelTipoDash">Tipo:</label>
-            <input type="text" name="tipo" id="tipo" value="<%- producto.tipo %>">
+            <p>ID: <span id="spnID"><%- producto._id %></span></p>
+            <p>Fecha Alta: <span id="spnFechaAlta"><%- producto.fecha %></span></p>
 
-            <label for="descripcion">Descripción:</label>
-            <input type="text" name="descripcion" id="descripcion" value="<%- producto.descripcion %>">
+            <form action="/dashboard/productos/updt/<%- producto._id %>" method="post">
 
-            <label for="imagen">Source Imágen:</label>
-            <input type="text" name="imagen" id="imagen"  value="<%- producto.imagen %>">
-
-            <label for="precio">Precio:</label>
-            <input type="number" name="precio" id="precio" min="1"  value="<%- producto.precio %>">
-
-            <div id="btnsFormDash">
-                <input type="submit" value="Modificar" id="btnSubmitDash">
-                <a href="/dashboard" class="btnCancelarDash">Cancelar</a>
-            </div>
-        </form>
-        <div id="divImgDash">
-            <% if (producto.imagen=='') { %>
-                <img id="imgFormDash" src="<%= rutaBase %>/assets/nopic.png"  alt="">
-            <% } else { %>
-                <img id="imgFormDash" src="<%- producto.imagen %>" alt="">
-            <% } %>
-            
-        </div>
-
-    <% } else { %>
-
-        <form action="/dashboard/productos/post/" method="post">
-            <% if (tituloURL.includes('Error')) { %>
                 <label for="tipo" id="labelTipoDash">Tipo:</label>
                 <input type="text" name="tipo" id="tipo" value="<%- producto.tipo %>">
 
@@ -53,32 +26,74 @@
 
                 <label for="precio">Precio:</label>
                 <input type="number" name="precio" id="precio" min="1"  value="<%- producto.precio %>">
+
+                <div id="btnsFormDash">
+                    <button  id="btnSubmitDash" type="submit"><i class="fa-regular fa-floppy-disk"></i> Agregar</button>                
+                    <a href="/dashboard" class="btnCancelarDash"><i class="fa-solid fa-rotate-left"></i> Cancelar</a>                
+                </div>
+
+            </form>
+
+            <div id="divImgDash">
+
+                <% if (producto.imagen=='') { %>
+                    <img id="imgFormDash" src="../assets/nopic.png"  alt="">
+                <% } else { %>
+                    <img id="imgFormDash" src="<%- producto.imagen %>" alt="">
+                <% } %>
                 
-            <% } else { %>
-
-                <label for="tipo" id="labelTipoDash">Tipo:</label>
-                <input type="text" name="tipo" id="tipo">
-
-                <label for="descripcion">Descripción:</label>
-                <input type="text" name="descripcion" id="descripcion">
-
-                <label for="imagen">Source Imágen:</label>
-                <input type="text" name="imagen" id="imagen">
-
-                <label for="precio">Precio:</label>
-                <input type="number" name="precio" id="precio" min="1">
-            <% } %>
-
-            <div id="btnsFormDash">
-                <input type="submit" value="Agregar" id="btnSubmitDash">
-                <a href="/dashboard" class="btnCancelarDash">Cancelar</a>
             </div>
-        </form>
-        <div id="divImgDash">
-            <img id="imgFormDash" src="<%= rutaBase %>/assets/nopic.png" alt="">
-        </div>
-    <% } %>
 
-</div>
+        <% } else { %>
 
-<%- include('templates/footer') %>
+            <form action="/dashboard/productos/post/" method="post">
+
+                <% if (tituloURL.includes('Error')) { %>
+
+                    <label for="tipo" id="labelTipoDash">Tipo:</label>
+                    <input type="text" name="tipo" id="tipo" value="<%- producto.tipo %>">
+
+                    <label for="descripcion">Descripción:</label>
+                    <input type="text" name="descripcion" id="descripcion" value="<%- producto.descripcion %>">
+
+                    <label for="imagen">Source Imágen:</label>
+                    <input type="text" name="imagen" id="imagen"  value="<%- producto.imagen %>">
+
+                    <label for="precio">Precio:</label>
+                    <input type="number" name="precio" id="precio" min="1"  value="<%- producto.precio %>">
+                    
+                <% } else { %>
+
+                    <label for="tipo" id="labelTipoDash">Tipo:</label>
+                    <input type="text" name="tipo" id="tipo">
+
+                    <label for="descripcion">Descripción:</label>
+                    <input type="text" name="descripcion" id="descripcion">
+
+                    <label for="imagen">Source Imágen:</label>
+                    <input type="text" name="imagen" id="imagen">
+
+                    <label for="precio">Precio:</label>
+                    <input type="number" name="precio" id="precio" min="1">
+
+                <% } %>
+
+                <div id="btnsFormDash">
+
+                    <button  id="btnSubmitDash" type="submit"><i class="fa-regular fa-floppy-disk"></i> Agregar</button>                
+                    <a href="/dashboard" class="btnCancelarDash"><i class="fa-solid fa-rotate-left"></i> Cancelar</a>
+
+                </div>
+
+            </form>
+
+            <div id="divImgDash">
+                <img id="imgFormDash" src="<%= rutaBase %>/assets/nopic.png" alt="">
+            </div>
+            
+        <% } %>
+
+    </div>
+</main>
+
+<%- include('templates/footerNE',{  tituloURL }) %>

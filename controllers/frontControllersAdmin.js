@@ -337,6 +337,7 @@ const deleteProducto = async (req, res) => {
 
 // Admin *********************************************
 const checkUser = async (req, res) => {
+    console.log('req',req.body)
     try {
         const { url, options } = fetchData('chkUser', req);
         const peticion = await fetch(url, options);
@@ -361,7 +362,7 @@ const checkUser = async (req, res) => {
             })
         }
     } catch (error) {
-        res.render("error", {
+        res.send({
             ok: false,
             msg: "Error checkUser.",
             error

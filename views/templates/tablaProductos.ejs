@@ -1,5 +1,7 @@
 <div class="divTable">
+    
     <h2 class="tbEncabezado"><%- tituloTabla %></h2>
+
     <table>
 
         <thead>
@@ -12,6 +14,7 @@
         </thead>
 
         <tbody>
+
             <% producto.forEach(item=> { %>
                 <tr>
                     <td><img src="<%- item.imagen %>" alt=""></td>
@@ -21,7 +24,8 @@
                         <button class="btnAddToCart"><i id="<%- item._id %>" class="fa-solid fa-cart-plus"></i></button>
                     </td>
                 </tr>
-                <% }) %>
+            <% }) %>
+
         </tbody>
         
         <tfoot>
