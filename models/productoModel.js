@@ -1,5 +1,6 @@
 const { Schema, model } = require('mongoose');
 
+
 const ProductoSchema = new Schema({
     tipo: {
         type: String,
@@ -21,6 +22,7 @@ const ProductoSchema = new Schema({
         type: Date,
         default: Date.now
     }
-})
+});
+
 
 module.exports = model('Producto', ProductoSchema)

@@ -1,5 +1,6 @@
 const { Schema, model } = require('mongoose');
 
+
 const ServicioSchema = new Schema({
     servicio: {
         type: String,
@@ -15,6 +16,7 @@ const ServicioSchema = new Schema({
         type: Date,
         default: Date.now
     }
-})
+});
+
 
 module.exports = model('Servicio', ServicioSchema)

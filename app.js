@@ -18,12 +18,13 @@ app.use(express.json())                             // Parse application/json
 conexion();                                         //Conexión
 
 
-app.use('/', require('./routers/routerFront'));     //Rutas
+//Rutas
+app.use('/', require('./routers/routerFront'));                         //FRONT
 app.use('/api/v1/productos', require('./routers/routerApiProductos'));
 app.use('/api/v1/servicios', require('./routers/routerApiServicios'));
 app.use('/api/v1/usuarios', require('./routers/routerApiUsuarios'));
 app.use('/api/v1/instalaciones', require('./routers/routerApiInstalaciones'));
-app.use('/dashboard', require('./routers/routerAdmin'));
+app.use('/dashboard', require('./routers/routerAdmin'));                //ADMIN
 
 
 //404

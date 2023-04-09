@@ -11,16 +11,20 @@ const {
     postProducto,
     scrapAndPostProductos,
     putProducto,
-    deleteProducto } = require('../controllers/apiControllersProductos')
+    deleteProducto } = require('../controllers/apiControllersProductos');
+
 
 //Todos
 router.get('/', getProductos);
 
+
 //Todos x Categoria
 router.get('/categoria/:categoria', getProductosCategoria);
 
+
 //Uno
 router.get('/id/:id', getProducto);
+
 
 //Crear
 router.post('/', [
@@ -30,6 +34,7 @@ router.post('/', [
     validateInputs],
     postProducto);
 
+
 //Modificar
 router.put('/id/:id', [
     check('tipo', 'El tipo es obligatorio').trim().not().isEmpty(),
@@ -38,10 +43,13 @@ router.put('/id/:id', [
     validateInputs],
     putProducto);
 
+
 //Scrapping
 router.get('/scrap', scrapAndPostProductos);
 
+
 //Borrar
 router.delete('/id/:id', deleteProducto);
+
 
 module.exports = router;

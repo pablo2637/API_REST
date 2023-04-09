@@ -1,5 +1,6 @@
 const { Schema, model } = require("mongoose");
 
+
 const InstalacionSchema = new Schema({
   tipo: String,
   descripcion: {
@@ -10,5 +11,6 @@ const InstalacionSchema = new Schema({
   precio: Number,
   dias: Number,
 });
+
 
 module.exports = model("Instalacion", InstalacionSchema);

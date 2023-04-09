@@ -1,11 +1,15 @@
 const puppeteer = require("puppeteer");
 
+
 const searchWeb = async (web, tipo) => {
+
     const browser = await puppeteer.launch({ headless: false });
     const page = await browser.newPage();
+
     const arrayProductos = [];
 
     await page.goto(web);
+    
 
     //Cookies
     await page.click("#CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll");

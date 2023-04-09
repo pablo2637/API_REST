@@ -9,13 +9,16 @@ const {
     getServicio,
     postServicio,
     putServicio,
-    deleteServicio } = require('../controllers/apiControllerServicios')
+    deleteServicio } = require('../controllers/apiControllerServicios');
+
 
 //Todos
 router.get('/', getServicios);
 
+
 //Uno
 router.get('/id/:id', getServicio);
+
 
 //Crear
 router.post('/', [
@@ -24,6 +27,7 @@ router.post('/', [
     validateInputs],
     postServicio);
 
+
 //Modificar
 router.put('/id/:id', [
     check('servicio', 'El servicio es obligatorio.').not().isEmpty().trim(),
@@ -31,7 +35,9 @@ router.put('/id/:id', [
     validateInputs],
     putServicio);
 
+
 //Borrar
 router.delete('/id/:id', deleteServicio);
+
 
 module.exports = router;
