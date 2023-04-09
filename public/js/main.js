@@ -30,12 +30,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 else if (ev.target.parentNode.id == 'btnCloseCart')
                     divCart.classList.toggle('mostrarCart');
 
+
+
         });
 
-        
-    main.addEventListener('click', ev => {
 
-        // ev.preventDefault();
+    main.addEventListener('click', ev => {
+      
+        if (divCart.classList.contains('mostrarCart'))
+            divCart.classList.toggle('mostrarCart');
+
+        if (divNavContenedor.classList.contains('mostrarNav'))
+            divNavContenedor.classList.toggle('mostrarNav');
+
 
         if (ev.target.parentNode.matches('tr') && ev.target.baseURI.includes('dashboard'))
             getDataToForm(ev.target.parentNode);
@@ -196,8 +203,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const init = () => {
 
         const url = location.toString();
-        
-        if (!url.includes('404') && !url.includes('admin')  && !url.includes('dashboard'))
+
+        if (!url.includes('404') && !url.includes('admin') && !url.includes('dashboard'))
             paintCart();
 
     };

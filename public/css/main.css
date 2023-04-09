@@ -409,6 +409,17 @@ footer a:hover {
   color: yellowgreen;
 }
 
+.pAdmin {
+  padding: 5px;
+  text-align: center;
+  font-size: 1.1em;
+}
+
+.pAdmin span {
+  font-weight: bold;
+  color: darkslategray;
+}
+
 #pErrorUser {
   text-align: center;
   color: red;

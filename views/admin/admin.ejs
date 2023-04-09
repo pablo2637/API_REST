@@ -2,10 +2,15 @@
 
     <main>
 
+        <p class="pAdmin">Usuario administrador: <span>pepe@correo.es</span></p>
+        <p class="pAdmin">Contraseña: <span>admin</span></p>
+
         <div id="divUser">            
+
             <form action="/dashboard/checkUser" method="POST">
 
                 <label for="email">Usuario:</label>
+
                 <% if (!tituloURL.includes('Error')) { %>
                     <input type="text" name="email" id="email" placeholder="email..." autocomplete="off">
                 <% } else { %>
@@ -13,13 +18,13 @@
                 <% } %>
 
                 <label for="password">Contraseña:</label>
-                <input type="password" name="password" id="password" autocomplete="off">
+                <input type="password" name="password" id="password" placeholder="contraseña..." autocomplete="off">
 
-                <button id="btnSubmitUser" type="submit"><i class="fa-solid fa-person-shelter"></i> Entrar</button>                            
+                <button id="btnSubmitUser" type="submit"><i class="fa-solid fa-person-shelter"></i> Entrar</button>
 
             </form>
         </div>
-        
+
         <% if (tituloURL.includes('Error')) { %>
             <p id="pErrorUser"><%- error %></p>
         <% } else { %>
